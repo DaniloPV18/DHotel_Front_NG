@@ -1,0 +1,35 @@
+header {
+    background-color: #f0a4a4;
+    /* Color de fondo del encabezado */
+    color: #fff;
+    /* Color del texto en el encabezado */
+    padding: 15px;
+    /* Espaciado interno del encabezado */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    /* Tamaño de la fuente del logotipo */
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-link {
+    margin-right: 15px;
+    /* Espaciado entre enlaces de navegación */
+    text-decoration: none;
+    color: #fff;
+    /* Color del texto del enlace de navegación */
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    /* Subrayar enlace al pasar el ratón */
+}

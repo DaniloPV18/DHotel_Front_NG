@@ -1,0 +1,13 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f0a4a4;
+    /* Color de fondo del pie de página */
+    color: #fff;
+    /* Color del texto en el pie de página */
+    padding: 10px;
+    /* Espaciado interno del pie de página */
+    text-align: center;
+}
