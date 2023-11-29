@@ -1,0 +1,32 @@
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()" class="form_login">
+            <div class="title">
+                <h2>👤</h2>
+                <h2>I N I C I A R</h2>
+                <h2>S E S I Ó N</h2>
+            </div>
+            <mat-form-field>
+                <input matInput placeholder="Email" name="email" required formControlName="email">
+            </mat-form-field>
+            <div *ngIf="(loginFormGroupControl['email'].touched || submitted) && loginFormGroupControl['email'].errors?.['required']"
+                class="error">
+                <mat-error>El correo electrónico es requerido</mat-error>
+            </div>
+            <div *ngIf="loginFormGroupControl['email'].touched && loginFormGroupControl['email'].errors?.['email']"
+                class="error">
+                <mat-error>Ingrese un correo electrónico valido</mat-error>
+            </div>
+            <mat-form-field>
+                <input matInput type="password" placeholder="Contraseña" name="contrasena" required
+                    formControlName="contrasena">
+            </mat-form-field>
+            <div *ngIf="(loginFormGroupControl['contrasena'].touched || submitted) && loginFormGroupControl['contrasena'].errors?.['required']"
+                class="error">
+                <mat-error>La contraseña es requerida</mat-error>
+            </div>
+            <button mat-raised-button color="accent">Ingresar</button>
+        </form>
+    </mat-card-content>
+    <img src="../../../assets/login/img2.jpg">
+</mat-card>
