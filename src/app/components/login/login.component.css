@@ -3,10 +3,11 @@ mat-card {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-color: bisque;
 }
 
 mat-card-content {
-    margin: 7%;
+    margin: 7% 3%;
     width: 100%;
     background-color: white;
     border-radius: 1em;
@@ -38,10 +39,6 @@ img {
     width: 66%;
 }
 
-button{
-    /* background-color: red !important; */
-}
-
 @media (max-width: 720px) {
     mat-card {
         text-align: center;
@@ -53,4 +50,4 @@ button{
     img {
         width: 100%;
     }
-}  
+}
