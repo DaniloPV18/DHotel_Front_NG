@@ -15,13 +15,19 @@ import { HeaderComponent } from './templates/header/header.component';
 import { FooterComponent } from './templates/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UsersListComponent } from './components/users/users-list/users-list.component';
+import { UsersCreateComponent } from './components/users/users-create/users-create.component';
+import { OptionsMainComponent } from './components/options-main/options-main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    UsersListComponent,
+    UsersCreateComponent,
+    OptionsMainComponent
   ],
   imports: [
     BrowserModule,
