@@ -1,0 +1,25 @@
+.form-struct{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-title{
+    text-align: center;
+}
+
+.form-title-style{
+    margin: 2em;
+}
+
+.campos-field{
+    width: 70%;
+}
+
+.button-struct{
+    width:60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1em;
+}

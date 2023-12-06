@@ -1,0 +1,12 @@
+<mat-card>
+    <div class="form-title">
+        <mat-card-title class="form-title-style">Confirmación</mat-card-title>
+        <mat-dialog-content>{{this.data.dataText}}</mat-dialog-content>
+    </div>
+    <form class="form-struct">
+        <div class="button-struct">
+            <button mat-raised-button color="primary" (click)="onSubmit()">Aceptar</button>
+            <button mat-raised-button color="accent" (click)="cancel()">Cancelar</button>
+        </div>
+    </form>
+</mat-card>
