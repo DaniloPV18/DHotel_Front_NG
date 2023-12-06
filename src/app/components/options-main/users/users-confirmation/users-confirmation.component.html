@@ -1,7 +1,7 @@
 <mat-card>
     <div class="form-title">
         <mat-card-title class="form-title-style">Confirmación</mat-card-title>
-        <mat-dialog-content>{{this.data.dataText}}</mat-dialog-content>
+        <mat-dialog-content [innerHTML]="this.data.dataText"></mat-dialog-content>
     </div>
     <form class="form-struct">
         <div class="button-struct">
