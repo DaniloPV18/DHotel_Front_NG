@@ -10,14 +10,21 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
+import { HttpClientModule } from '@angular/common/http';
 
 import { HeaderComponent } from './templates/header/header.component';
 import { FooterComponent } from './templates/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UsersListComponent } from './components/users/users-list/users-list.component';
-import { UsersCreateComponent } from './components/users/users-create/users-create.component';
+import { UsersListComponent } from './components/options-main/users/users-list/users-list.component';
+import { UsersCreateComponent } from './components/options-main/users/users-create/users-create.component';
 import { OptionsMainComponent } from './components/options-main/options-main.component';
+import { UsersUpdateComponent } from './components/options-main/users/users-update/users-update.component';
+import { UsersDeleteComponent } from './components/options-main/users/users-delete/users-delete.component';
 
 @NgModule({
   declarations: [
@@ -27,19 +34,25 @@ import { OptionsMainComponent } from './components/options-main/options-main.com
     LoginComponent,
     UsersListComponent,
     UsersCreateComponent,
-    OptionsMainComponent
+    OptionsMainComponent,
+    UsersUpdateComponent,
+    UsersDeleteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     /* ANGULAR MATERIAL */
     MatIconModule,
     MatButtonModule,
     MatInputModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatTableModule,
+    MatDialogModule,
+    MatPaginatorModule
   ],
   providers: [
     provideClientHydration()
