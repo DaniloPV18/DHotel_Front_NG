@@ -74,6 +74,16 @@ img {
     cursor: pointer;
 }
 
+.button-activate {
+    background-color: #27d152;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    font-size: small;
+    color: black;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
 .svg-form {
     width: 1em;
 }

@@ -24,7 +24,7 @@ import { UsersListComponent } from './components/options-main/users/users-list/u
 import { UsersCreateComponent } from './components/options-main/users/users-create/users-create.component';
 import { OptionsMainComponent } from './components/options-main/options-main.component';
 import { UsersUpdateComponent } from './components/options-main/users/users-update/users-update.component';
-import { UsersDeleteComponent } from './components/options-main/users/users-delete/users-delete.component';
+import { UsersConfirmationComponent } from './components/options-main/users/users-confirmation/users-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { UsersDeleteComponent } from './components/options-main/users/users-dele
     UsersCreateComponent,
     OptionsMainComponent,
     UsersUpdateComponent,
-    UsersDeleteComponent
+    UsersConfirmationComponent
   ],
   imports: [
     BrowserModule,

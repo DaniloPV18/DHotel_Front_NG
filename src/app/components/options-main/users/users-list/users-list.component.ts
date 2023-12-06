@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Users } from '../../../../interfaces/users';
 import { UsersUpdateComponent } from '../users-update/users-update.component';
-import { UsersDeleteComponent } from '../users-delete/users-delete.component';
+import { UsersConfirmationComponent } from '../users-confirmation/users-confirmation.component';
 
 @Component({
   selector: 'app-users-list',
@@ -30,7 +30,7 @@ export class UsersListComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'email', 'ultima_actividad', 'genero', 'estado', 'rol', 'accion'];
+  displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'email', 'ultima_actividad', 'genero', 'rol', 'accion'];
 
   seeModal(element: Users) {
     this._dialogRef.open(UsersUpdateComponent, {
@@ -42,12 +42,25 @@ export class UsersListComponent implements AfterViewInit {
   }
 
   deleteEntity(element: Users) {
-    var text = "¿Está seguro que desea eliminar el registro?";
-    this._dialogRef.open(UsersDeleteComponent, {
+    var text = "¿Está seguro que desea <b>desactivar</b> la cuenta?";
+    this._dialogRef.open(UsersConfirmationComponent, {
       width: '30%',
       data: {
         dataModal: element,
-        dataText: text
+        dataText: text,
+        dataStatus: 0
+      }
+    });
+  }
+
+  activateEntity(element: Users) {
+    var text = "¿Está seguro que desea <b>activar</b> la cuenta?";
+    this._dialogRef.open(UsersConfirmationComponent, {
+      width: '30%',
+      data: {
+        dataModal: element,
+        dataText: text,
+        dataStatus: 1
       }
     });
   }

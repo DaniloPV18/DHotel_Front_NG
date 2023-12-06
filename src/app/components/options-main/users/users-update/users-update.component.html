@@ -3,45 +3,58 @@
         <mat-card-title class="form-title-style">Modificar Usuario</mat-card-title>
     </div>
     <form [formGroup]="formModify" class="form-struct">
-        <mat-form-field class="campos-field">
-            <input matInput placeholder="Cedula" formControlName="cedula">
-        </mat-form-field>
 
-        <mat-form-field class="campos-field">
-            <input matInput placeholder="Nombres" formControlName="nombres">
-        </mat-form-field>
+        <div class="campo">
+            <label>Cedula: </label>
+            <mat-form-field class="campos-field">
+                <input matInput placeholder="Cedula" formControlName="cedula">
+            </mat-form-field>
+        </div>
 
-        <mat-form-field class="campos-field">
-            <input matInput placeholder="Apellidos" formControlName="apellidos">
-        </mat-form-field>
+        <div class="campo">
+            <label>Nombres: </label>
+            <mat-form-field class="campos-field">
+                <input matInput placeholder="Nombres" formControlName="nombres">
+            </mat-form-field>
+        </div>
 
-        <mat-form-field class="campos-field">
-            <input matInput placeholder="Correo Electrónico" formControlName="correo">
-        </mat-form-field>
+        <div class="campo">
+            <label>Apellidos: </label>
+            <mat-form-field class="campos-field">
+                <input matInput placeholder="Apellidos" formControlName="apellidos">
+            </mat-form-field>
+        </div>
 
-        <mat-form-field class="campos-field">
-            <input matInput placeholder="Genero" formControlName="id_genero">
-        </mat-form-field>
+        <div class="campo">
+            <label>Email: </label>
+            <mat-form-field class="campos-field">
+                <input matInput placeholder="Correo Electrónico" formControlName="correo">
+            </mat-form-field>
+        </div>
 
-        <mat-form-field class="campos-field">
-            <input matInput placeholder="Estado" formControlName="id_estado">
-        </mat-form-field>
+        <div class="campo">
+            <label>Género: </label>
+            <mat-form-field class="campos-field">
+                <input matInput placeholder="Genero" formControlName="id_genero">
+            </mat-form-field>
+        </div>
 
-        <mat-form-field class="campos-field">
-            <input matInput placeholder="Rol" formControlName="id_rol">
-        </mat-form-field>
+        <div class="campo">
+            <label>Rol: </label>
+            <mat-form-field class="campos-field">
+                <mat-label>Rol</mat-label>
+                <select formControlName="id_rol" matNativeControl required>
+                    <option value="Client">Cliente</option>
+                    <option value="Administrator">Administrador</option>
+                </select>
+            </mat-form-field>
+        </div>
 
         <!-- <mat-form-field class="campos-field">
             <input matInput placeholder="Contraseña" formControlName="password">
         </mat-form-field> -->
 
-        <!-- <mat-form-field appearance="fill">
-            <mat-label>Rol</mat-label>
-            <select formControlName="rol" matNativeControl required>
-                <option value="Client">Cliente</option>
-                <option value="Administrator">Administrador</option>
-            </select>
-        </mat-form-field> -->
+
 
         <!-- <mat-form-field appearance="fill" class="campos-field">
             <mat-label>Rol</mat-label>
