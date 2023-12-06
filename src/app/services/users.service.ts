@@ -156,7 +156,8 @@ export class UsersService {
   }
 
   updateUser(user: Users) {
-    return this.http.post(`${this.baseUrl}updateUser/`, user);
+    console.log(user);
+    //return this.http.post(`${this.baseUrl}updateUser/`, user);
   }
 
   deleteProduct(id: number) {

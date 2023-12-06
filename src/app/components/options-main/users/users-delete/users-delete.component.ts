@@ -11,7 +11,6 @@ export class UsersDeleteComponent {
     private _dialogRef: MatDialogRef<UsersDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log(data.dataText);
   }
 
   onSubmit() {
