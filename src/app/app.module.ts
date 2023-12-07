@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -46,6 +47,7 @@ import { UsersConfirmationComponent } from './components/options-main/users/user
     /* ANGULAR MATERIAL */
     MatIconModule,
     MatButtonModule,
+    MatSelectModule,
     MatInputModule,
     ReactiveFormsModule,
     MatCardModule,
