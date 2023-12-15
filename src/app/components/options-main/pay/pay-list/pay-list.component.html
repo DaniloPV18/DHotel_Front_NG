@@ -2,6 +2,15 @@
     <h1>CÚPULA ADMINISTRATIVA</h1>
 </div>
 <div class="container">
+
+    <button class="button-main buttons-margin">
+        Registrar Nuevo Pago Directo
+    </button>
+
+    <button class="button-main buttons-margin">
+        Registrar Nueva Reserva
+    </button>
+
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <!-- Position Column -->
@@ -41,8 +50,12 @@
         <ng-container matColumnDef="tipo_pago">
             <th mat-header-cell *matHeaderCellDef> Tipo Pago </th>
             <td mat-cell *matCellDef="let element">
-                <label *ngIf="element.id_tipo_pago === 1">Directo</label>
-                <label *ngIf="element.id_tipo_pago === 2">Reserva</label>
+                <label *ngIf="element.id_tipo_pago === 1">
+                    <div class="label-tipo-directo">Directo</div>
+                </label>
+                <label *ngIf="element.id_tipo_pago === 2">
+                    <div class="label-tipo-reserva">Reserva</div>
+                </label>
             </td>
         </ng-container>
 
@@ -50,13 +63,12 @@
             <th mat-header-cell *matHeaderCellDef> Accion </th>
             <td mat-cell *matCellDef="let element">
                 <div class="buttons">
-                    <button *ngIf="element.id_tipo_pago === 1" class="button-details buttons-margin"
+                    <button class="button-details buttons-margin"
                         (click)="seeDetails(element)">
                         Ver Detalle
                     </button>
-                    <button *ngIf="element.id_tipo_pago === 2" class="button-historic buttons-margin"
-                        (click)="seeHistoric(element)">
-                        Ver Historial
+                    <button class="button-historic buttons-margin" (click)="seeDetails(element)">
+                        Anular
                     </button>
                 </div>
             </td>

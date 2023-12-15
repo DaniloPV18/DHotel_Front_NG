@@ -26,6 +26,12 @@ import { UsersCreateComponent } from './components/options-main/users/users-crea
 import { OptionsMainComponent } from './components/options-main/options-main.component';
 import { UsersUpdateComponent } from './components/options-main/users/users-update/users-update.component';
 import { UsersConfirmationComponent } from './components/options-main/users/users-confirmation/users-confirmation.component';
+import { PayListComponent } from './components/options-main/pay/pay-list/pay-list.component';
+import { PayCreateComponent } from './components/options-main/pay/pay-create/pay-create.component';
+import { PayUpdateComponent } from './components/options-main/pay/pay-update/pay-update.component';
+import { PayConfirmationComponent } from './components/options-main/pay/pay-confirmation/pay-confirmation.component';
+import { PayDetailsComponent } from './components/options-main/pay/pay-details/pay-details.component';
+import { PayHistoricComponent } from './components/options-main/pay/pay-historic/pay-historic.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +43,13 @@ import { UsersConfirmationComponent } from './components/options-main/users/user
     UsersCreateComponent,
     OptionsMainComponent,
     UsersUpdateComponent,
-    UsersConfirmationComponent
+    UsersConfirmationComponent,
+    PayListComponent,
+    PayCreateComponent,
+    PayUpdateComponent,
+    PayConfirmationComponent,
+    PayDetailsComponent,
+    PayHistoricComponent
   ],
   imports: [
     BrowserModule,
