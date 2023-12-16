@@ -109,3 +109,13 @@ img {
       width: 45%;
   }
 }
+
+.actions{
+  display: flex;
+  justify-content: center;
+}
+
+.buttons{
+  display: flex;
+  gap: 2rem;
+}

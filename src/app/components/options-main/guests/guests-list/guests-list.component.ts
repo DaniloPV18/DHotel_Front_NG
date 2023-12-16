@@ -30,7 +30,7 @@ export class GuestsListComponent implements AfterViewInit  {
     this.dataSource.paginator = this.paginator;
   }
 
-  displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'celular', 'genero', 'registrado', 'fecha_registro', 'fecha_modificacion'];
+  displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'celular', 'genero', 'registrado', 'fecha_registro', 'fecha_modificacion', 'accion'];
 
   seeModal(element: Guests) {
     this._dialogRef.open(UsersUpdateComponent, {
