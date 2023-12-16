@@ -14,6 +14,11 @@ div h1 {
     margin: 2% 4% 5% 5%;
 }
 
+.buttons{
+  display: flex;
+  gap: 2rem;
+}
+
 .buttons-main {
     display: flex;
     flex-direction: column;
