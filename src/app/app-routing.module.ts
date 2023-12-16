@@ -6,6 +6,8 @@ import { UsersListComponent } from './components/options-main/users/users-list/u
 import { PayListComponent } from './components/options-main/pay/pay-list/pay-list.component';
 import { GuestsListComponent } from './components/options-main/guests/guests-list/guests-list.component';
 import { ErrorPageComponent } from './templates/error-page/error-page.component';
+import { RoomsListComponent } from './components/options-main/rooms/rooms-list/rooms-list.component';
+import { ServicesListComponent } from './components/options-main/services/services-list/services-list.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -13,7 +15,9 @@ const routes: Routes = [
   { path: "users", component: UsersListComponent },
   { path: "pays", component: PayListComponent },
   { path: "guests", component: GuestsListComponent},
-  { path: "404", component: ErrorPageComponent}
+  { path: "rooms", component: RoomsListComponent},
+  { path: "services", component: ServicesListComponent},
+  { path: "404", component: ErrorPageComponent},
 ];
 
 @NgModule({

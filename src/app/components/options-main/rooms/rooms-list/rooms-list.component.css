@@ -1,0 +1,124 @@
+h1 {
+  text-align: center;
+}
+
+div h1 {
+  margin-top: 1em;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2% 4% 5% 5%;
+}
+
+.buttons{
+display: flex;
+gap: 2rem;
+}
+
+.buttons-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.opciones {
+  margin: 1%;
+  width: 30%;
+  height: 12em;
+  background-color: white;
+  padding: 1em;
+  border-radius: 1em;
+  cursor: pointer;
+}
+
+.opciones .buttons-main span {
+  margin-top: 5%;
+  text-align: center;
+}
+
+.opciones:hover {
+  background-color: #f0a4a4;
+}
+
+.opciones:hover .buttons-main img {
+  width: 29%;
+}
+
+img {
+  width: 27%;
+}
+
+.buttons-margin {
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.button-modify {
+  background-color: #aad3c7;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  font-size: small;
+  color: black;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.button-delete {
+  background-color: #D1275B;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  font-size: small;
+  color: black;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.button-activate {
+  background-color: #27d152;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  font-size: small;
+  color: black;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.svg-form {
+  width: 1em;
+}
+
+.paginator{
+  margin: 2% 0%;
+}
+
+@media (max-width: 720px) {
+  .container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1em;
+      margin-bottom: 3em;
+      overflow-x: auto;
+  }
+
+  .opciones {
+      margin: auto;
+      margin-top: 3%;
+      margin-bottom: 3%;
+      width: 70%;
+      height: 11em;
+  }
+
+  img {
+      width: 40%;
+  }
+
+  .opciones:hover .buttons-main img {
+      width: 45%;
+  }
+}

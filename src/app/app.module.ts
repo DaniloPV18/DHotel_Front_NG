@@ -34,6 +34,8 @@ import { PayDetailsComponent } from './components/options-main/pay/pay-details/p
 import { PayHistoricComponent } from './components/options-main/pay/pay-historic/pay-historic.component';
 import { GuestsListComponent } from './components/options-main/guests/guests-list/guests-list.component';
 import { ErrorPageComponent } from './templates/error-page/error-page.component';
+import { RoomsListComponent } from './components/options-main/rooms/rooms-list/rooms-list.component';
+import { ServicesListComponent } from './components/options-main/services/services-list/services-list.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { ErrorPageComponent } from './templates/error-page/error-page.component'
     PayDetailsComponent,
     PayHistoricComponent,
     GuestsListComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    RoomsListComponent,
+    ServicesListComponent
   ],
   imports: [
     BrowserModule,
