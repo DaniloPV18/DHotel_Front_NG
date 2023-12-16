@@ -1,0 +1,185 @@
+[33mcommit b8f89df43bd987db971abf044b290fadc6c55856[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: FbrzRM <framosmesias@gmail.com>
+Date:   Fri Dec 15 19:38:23 2023 -0500
+
+    Icons, box-s, css:styles
+
+[33mcommit ce3443e90ae74f9cd3a7bafe9e794db03a03c13e[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Fri Dec 15 09:03:44 2023 -0500
+
+    Modulo pagos en proceso
+
+[33mcommit d3c31271a0d8040302b2a07aa785fd498277f9f5[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Sat Dec 9 23:11:57 2023 -0500
+
+    Servicio pay
+
+[33mcommit 837d348c557df73dc0c861df3b2e2480197b6ed8[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Sat Dec 9 23:11:32 2023 -0500
+
+    Modelo Pay
+
+[33mcommit da9960b2043dbee1d8dbe7c9fb2bdb5dcfa37229[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Sat Dec 9 23:11:21 2023 -0500
+
+    Componentes de pago
+
+[33mcommit d595189969167584cb6e40a933d4c8a016a88c34[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Dec 6 21:12:30 2023 -0500
+
+    Cambios modal
+
+[33mcommit e894233760eedb92d7622a73ff2fbfec9921e8ca[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Dec 6 15:56:21 2023 -0500
+
+    Negrita agregada confirmation
+
+[33mcommit eddcd50754b563d63c598c487b620ae7192429ea[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Dec 6 15:55:02 2023 -0500
+
+    Confirmation component
+
+[33mcommit 0b6b6336ac5c4f3a9dfe309d27a636372345902b[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Dec 6 14:57:28 2023 -0500
+
+    User component actualziado
+
+[33mcommit 9050367d832db0b9df03d83b78ec0b7b78de6be8[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Dec 6 10:33:56 2023 -0500
+
+    Interfaz y servicio de usuario agregado
+
+[33mcommit 90a1f72d5b38f48ec24632473f39912577f12b30[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Dec 6 10:33:38 2023 -0500
+
+    Componente listar usuarios - En proceso
+
+[33mcommit dfa01acf1978042617757d596357ad54947f9914[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Dec 6 10:33:18 2023 -0500
+
+    Modal update - En proceso
+
+[33mcommit 6cc938fc7c77893a9289c663dae8ec42d5d393e6[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Dec 6 10:33:04 2023 -0500
+
+    Modal delete agregado - En proceso
+
+[33mcommit 403503e046ee65f613172cd2340e9f30487a3ccf[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Dec 6 10:32:45 2023 -0500
+
+    Componente creacion usuario - En proceso
+
+[33mcommit 6ffb9f90d5b32e4856f707ff4c9480301c015c26[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Dec 6 10:32:07 2023 -0500
+
+    Ambiente de desarrollo
+
+[33mcommit c84b8ade9df0f530cc00d794c752e7fa36d265c3[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Dec 6 10:31:51 2023 -0500
+
+    Modulos y rutas agregadas
+
+[33mcommit c9094b7c7a58e1687e52361bf97b7541a92e102e[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Dec 6 10:26:24 2023 -0500
+
+    Redireccionamiento de componentes
+
+[33mcommit 470ebd36fc00d21acddcc76eb31efeadeeac3605[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Dec 6 10:25:48 2023 -0500
+
+    Ambiente del proyecto
+
+[33mcommit e4de71c98e4e1f05195cf2e25f60e670608b2fdd[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Thu Nov 30 09:47:04 2023 -0500
+
+    Opciones menu responsive
+
+[33mcommit fb14d77351f9c0952d7c3a345ba222ca805ca940[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Thu Nov 30 09:03:53 2023 -0500
+
+    Opciones de menu en proceso
+
+[33mcommit 6fe8ce76a73890b306f90de0e4902f351802cb90[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Thu Nov 30 09:02:55 2023 -0500
+
+    Angular material instalado
+
+[33mcommit 631f53a46860334010f24dc79e22466ba89ee73d[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Thu Nov 30 09:02:33 2023 -0500
+
+    Rutas y modulos de usuarios referenciados
+
+[33mcommit dd273f4f2c7012e31ef05e5db02cd90828162089[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Thu Nov 30 09:02:06 2023 -0500
+
+    Estilos de login agregados
+
+[33mcommit e261ed2ffbc131e038db348d6afeccd823b02e61[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Thu Nov 30 09:01:42 2023 -0500
+
+    Pantalla de login desarrollada
+
+[33mcommit c8942ce46f265cbbe49b6c6b0f3c1aa1692b57bb[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Nov 29 11:30:45 2023 -0500
+
+    Dependencias y estilos agregadas para el login
+
+[33mcommit e195324eff4ef9cc607aa6b01257c4be142ca98d[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Nov 29 11:30:09 2023 -0500
+
+    Header | Footer agregados como etiquetas
+
+[33mcommit c585558f1b21304fe71ba673da40ba0822bd9f83[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Nov 29 11:29:22 2023 -0500
+
+    Ruta login agregada
+
+[33mcommit 6a66bf91698c275a94c878ea165015b7d1ca38c5[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Nov 29 11:28:41 2023 -0500
+
+    Modulos de angular material agregados
+
+[33mcommit 9289947f7675b5747a3cf02542baa9be7dcc1929[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Wed Nov 29 11:28:04 2023 -0500
+
+    Estructura base - Header | Footer
+
+[33mcommit b14e71b37ca20ea825f66d540f4a68ffd25f6b00[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Tue Nov 28 14:48:02 2023 -0500
+
+    Estructura base
+
+[33mcommit a9b36b5edc17cb358f04c6451525ffbd5420315b[m
+Author: DaniloPV18 <damipive1809@gmail.com>
+Date:   Tue Nov 28 14:40:36 2023 -0500
+
+    initial commit
