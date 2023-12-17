@@ -57,7 +57,7 @@ export class PayListComponent implements AfterViewInit {
         break;
     }
     this._dialogRef.open(PayCreateComponent, {
-      width: '50%',
+      width: '25%',
       data: {
         dataText: text,
         dataStatus: status
