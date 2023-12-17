@@ -7,6 +7,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Users } from '../../../../interfaces/users';
 import { UsersUpdateComponent } from '../../users/users-update/users-update.component';
 import { UsersConfirmationComponent } from '../../users/users-confirmation/users-confirmation.component';
+import { RoomsService } from '../../../../services/rooms.service';
+import { Rooms } from '../../../../interfaces/rooms';
 @Component({
   selector: 'app-rooms-list',
   templateUrl: './rooms-list.component.html',
@@ -15,7 +17,7 @@ import { UsersConfirmationComponent } from '../../users/users-confirmation/users
 export class RoomsListComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  dataSource: MatTableDataSource<Users>;
+  dataSource: MatTableDataSource<Rooms>;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -23,16 +25,16 @@ export class RoomsListComponent {
   }
 
   constructor(
-    private _userService: UsersService,
+    private _roomService: RoomsService,
     private _dialogRef: MatDialog
   ) {
-    this.dataSource = new MatTableDataSource(this._userService.getAllUsers());
+    this.dataSource = new MatTableDataSource(this._roomService.getAllRooms());
     this.dataSource.paginator = this.paginator;
   }
 
-  displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'email', 'ultima_actividad', 'genero', 'rol', 'accion'];
+  displayedColumns: string[] = ['id', 'numero', 'id_tipo_habitacion', 'id_personal_registro', 'fecha_registro', 'fecha_modificacion', 'id_estado', 'precio', 'foto_ruta', 'accion'];
 
-  seeModal(element: Users) {
+  seeModal(element: Rooms) {
     this._dialogRef.open(UsersUpdateComponent, {
       width: '30%',
       data: {
@@ -41,7 +43,7 @@ export class RoomsListComponent {
     });
   }
 
-  deleteEntity(element: Users) {
+  deleteEntity(element: Rooms) {
     var text = "¿Está seguro que desea <b>desactivar</b> la cuenta?";
     this._dialogRef.open(UsersConfirmationComponent, {
       width: '30%',
@@ -53,7 +55,7 @@ export class RoomsListComponent {
     });
   }
 
-  activateEntity(element: Users) {
+  activateEntity(element: Rooms) {
     var text = "¿Está seguro que desea <b>activar</b> la cuenta?";
     this._dialogRef.open(UsersConfirmationComponent, {
       width: '30%',
