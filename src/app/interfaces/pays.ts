@@ -1,7 +1,7 @@
 export interface Pays {
     id?: number;
-    id_personal_registro?: number;
-    id_huesped: number;
+    personal_registro?: string;
+    huesped: string;
     id_habitacion?: number;
     id_tipo_pago?: number;
     valor_pagado_actual?: number;
