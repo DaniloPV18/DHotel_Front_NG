@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PaysService } from '../../../../services/pays.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PayHistoricComponent } from '../pay-historic/pay-historic.component';
 
 @Component({
   selector: 'app-pay-details',
@@ -12,30 +13,36 @@ export class PayDetailsComponent {
   constructor(
     private _payService: PaysService,
     private _dialogRef: MatDialogRef<PayDetailsComponent>,
+    private _dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
   }
 
   formModify = new FormGroup({
-    cedula: new FormControl(this.data.dataModal.id_huesped, Validators.required),
-    nombres: new FormControl(this.data.dataModal.nombres, Validators.required),
-    apellidos: new FormControl(this.data.dataModal.apellidos, Validators.required),
-    celular: new FormControl(this.data.dataModal.celular), // Puedes agregar más campos según sea necesario
-    correo: new FormControl(this.data.dataModal.correo, Validators.required),
-    id_genero: new FormControl(this.data.dataModal.id_genero), // Asegúrate de manejar los campos numéricos según tus necesidades
-    pwd: new FormControl(this.data.dataModal.pwd),
-    fecha_nacimiento: new FormControl(new Date()),
-    id_rol: new FormControl(this.data.dataModal.id_rol),
-    id_personal_registro: new FormControl(1),
-    id_estado: new FormControl(this.data.dataModal.id_estado),
-    fecha_modificacion: new FormControl(new Date()),
+    id: new FormControl(this.data.dataModal.id, Validators.required),
+    encargado: new FormControl(this.data.dataModal.personal_registro, Validators.required),
+    huesped: new FormControl(this.data.dataModal.huesped, Validators.required),
+    habitacion: new FormControl(this.data.dataModal.id_habitacion, Validators.required),
+    tipo_pago: new FormControl(this.data.dataModal.id_tipo_pago === 1 ? "Directo" : "Reserva"),
+    valor_pagado: new FormControl(this.data.dataModal.valor_a_pagar, Validators.required),
+    fecha_inicio: new FormControl(this.data.dataModal.fecha_inicio, Validators.required),
+    fecha_fin: new FormControl(this.data.dataModal.fecha_fin, Validators.required),
+    fecha_registro: new FormControl(this.data.dataModal.fecha_registro, Validators.required),
   });
 
-  onSubmit() {
-
+  seeHistoric() {
+    var text = "HISTORIAL DE PAGOS DE RESERVAS";
+    const dialogRef = this._dialog.open(PayHistoricComponent, {
+      width: '80%',
+      data: {
+        dataModal: this.data.dataModal,
+        dataText: text,
+        dataStatus: 1
+      }
+    });
   }
 
   cancel() {
-
+    this._dialogRef.close();
   }
 }
