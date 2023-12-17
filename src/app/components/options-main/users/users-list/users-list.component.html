@@ -58,17 +58,11 @@
             <th mat-header-cell *matHeaderCellDef> Accion </th>
             <td mat-cell *matCellDef="let element">
                 <div class="buttons">
-                    <button class="button-modify buttons-margin" (click)="seeModal(element)">
-                        Ver
-                    </button>
-                    <button *ngIf="element.id_estado === 1" class="button-delete buttons-margin"
-                        (click)="deleteEntity(element)">
-                        Desactivar
-                    </button>
-                    <button *ngIf="element.id_estado !== 1" class="button-activate buttons-margin"
-                        (click)="activateEntity(element)">
-                        Activar
-                    </button>
+                  <button mat-mini-fab color="primary" (click)="seeModal(element)">
+                    <mat-icon>visibility</mat-icon>
+                  </button>
+                    <button *ngIf="element.id_estado === 1" mat-raised-button color="warn" (click)="deleteEntity(element)">Desactivar</button>
+                    <button *ngIf="element.id_estado !== 1" mat-raised-button color="primary" (click)="activateEntity(element)">Activar</button>
                 </div>
             </td>
         </ng-container>
