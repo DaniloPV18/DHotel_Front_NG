@@ -39,6 +39,7 @@ import { GuestsListComponent } from './components/options-main/guests/guests-lis
 import { ErrorPageComponent } from './templates/error-page/error-page.component';
 import { RoomsListComponent } from './components/options-main/rooms/rooms-list/rooms-list.component';
 import { ServicesListComponent } from './components/options-main/services/services-list/services-list.component';
+import { RoomUpdateComponent } from './components/options-main/rooms/room-update/room-update.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ServicesListComponent } from './components/options-main/services/servic
     GuestsListComponent,
     ErrorPageComponent,
     RoomsListComponent,
-    ServicesListComponent
+    ServicesListComponent,
+    RoomUpdateComponent
   ],
   imports: [
     BrowserModule,

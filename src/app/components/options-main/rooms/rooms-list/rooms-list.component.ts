@@ -9,6 +9,7 @@ import { UsersUpdateComponent } from '../../users/users-update/users-update.comp
 import { UsersConfirmationComponent } from '../../users/users-confirmation/users-confirmation.component';
 import { RoomsService } from '../../../../services/rooms.service';
 import { Rooms } from '../../../../interfaces/rooms';
+import { RoomUpdateComponent } from '../room-update/room-update.component';
 @Component({
   selector: 'app-rooms-list',
   templateUrl: './rooms-list.component.html',
@@ -35,7 +36,7 @@ export class RoomsListComponent {
   displayedColumns: string[] = ['id', 'numero', 'id_tipo_habitacion', 'id_personal_registro', 'fecha_registro', 'fecha_modificacion', 'id_estado', 'precio', 'foto_ruta', 'accion'];
 
   seeModal(element: Rooms) {
-    this._dialogRef.open(UsersUpdateComponent, {
+    this._dialogRef.open(RoomUpdateComponent, {
       width: '30%',
       data: {
         dataModal: element

@@ -1,39 +1,13 @@
-.form-struct {
-    display: flex;
-    flex-direction: column;
-    padding: 3%;
+.card{
+  padding: 1rem;
+}
+.form-struct{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
 
-.form-title {
-    text-align: center;
-}
-
-.form-title-style {
-    margin: 2em;
-}
-
-.campos-field {
-    width: 100%;
-}
-
-label {
-    width: 100%;
-}
-
-.button-struct {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 3%;
-}
-
-.campo {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-button {
-    margin: 1%;
+.campo{
+  display: flex;
+  flex-direction: column;
 }

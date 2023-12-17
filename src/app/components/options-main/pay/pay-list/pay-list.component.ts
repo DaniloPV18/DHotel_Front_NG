@@ -37,7 +37,7 @@ export class PayListComponent implements AfterViewInit {
   seeDetails(element: Pays) {
     var text = "DETALLES DE PAGO";
     this._dialogRef.open(PayDetailsComponent, {
-      width: '30%',
+      width: '40%',
       data: {
         dataModal: element,
         dataText: text,

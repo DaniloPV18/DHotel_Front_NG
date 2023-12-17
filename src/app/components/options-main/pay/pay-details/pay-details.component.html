@@ -1,6 +1,6 @@
-<mat-card>
+<mat-card class="card">
     <div class="form-title">
-        <mat-card-title class="form-title-style">{{this.data.dataText}}</mat-card-title>
+        <mat-card-title class="txt-center">{{this.data.dataText}}</mat-card-title>
     </div>
     <form [formGroup]="formModify" class="form-struct">
 
@@ -72,7 +72,7 @@
                 (click)="seeHistoric()">
                 Ver Detalle
             </button>
-            <button mat-raised-button color="accent" (click)="cancel()">Cerrar</button>
         </div>
+        <button mat-raised-button color="accent" (click)="cancel()">Cerrar</button>
     </form>
 </mat-card>
