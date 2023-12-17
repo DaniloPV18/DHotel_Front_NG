@@ -6,7 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Pays } from '../../../../interfaces/pays';
 import { PaysService } from '../../../../services/pays.service';
 import { PayDetailsComponent } from '../pay-details/pay-details.component';
-import { PayHistoricComponent } from '../pay-historic/pay-historic.component';
+import { PayConfirmationComponent } from '../pay-confirmation/pay-confirmation.component';
+import { PayCreateComponent } from '../pay-create/pay-create.component';
 
 @Component({
   selector: 'app-pay-list',
@@ -45,14 +46,33 @@ export class PayListComponent implements AfterViewInit {
     });
   }
 
-  seeHistoric(element: Pays) {
-    var text = "HISTORIAL DE PAGOS DE RESERVAS";
-    this._dialogRef.open(PayHistoricComponent, {
+  create(status: number) {
+    var text = "";
+    switch (status) {
+      case 1:
+        text = "REGISTRAR PAGO DIRECTO";
+        break;
+      case 2:
+        text = "REGISTRAR RESERVA";
+        break;
+    }
+    this._dialogRef.open(PayCreateComponent, {
+      width: '50%',
+      data: {
+        dataText: text,
+        dataStatus: status
+      }
+    });
+  }
+
+  deleteElement(element: Pays) {
+    var text = "¿ESTÁ SEGURO QUE DESEA <b>ANULAR</b> EL REGISTRO?";
+    this._dialogRef.open(PayConfirmationComponent, {
       width: '30%',
       data: {
         dataModal: element,
         dataText: text,
-        dataStatus: 1
+        dataStatus: 0
       }
     });
   }

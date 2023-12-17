@@ -145,22 +145,22 @@ export class UsersService {
       }
     ];
 
-  constructor(private http: HttpClient) { }
+    constructor(private _httpClient: HttpClient) { }
 
   getAllUsers(): Users[] {
     return this.users;
   }
 
   addUser(user: Users) {
-    return this.http.post(`${this.baseUrl}addUser/`, user);
+    return this._httpClient.post(`${this.baseUrl}addUser/`, user);
   }
 
   updateUser(user: Users) {
     console.log(user);
-    //return this.http.post(`${this.baseUrl}updateUser/`, user);
+    //return this._httpClient.post(`${this.baseUrl}updateUser/`, user);
   }
 
-  deleteProduct(id: number) {
-    return this.http.put(`${this.baseUrl}deleteUser/${id}`, id);
+  deleteUser(id: number) {
+    return this._httpClient.put(`${this.baseUrl}deleteUser/${id}`, id);
   }
 }

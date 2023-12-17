@@ -1,1 +1,56 @@
-<p>pay-create works!</p>
+<mat-card>
+    <div class="form-title">
+        <mat-card-title class="form-title-style">{{this.data.dataText}}</mat-card-title>
+    </div>
+    <form [formGroup]="formCreate" class="form-struct">
+        <div class="campo">
+            <label>Huesped: </label>
+            <mat-form-field class="campos-field">
+                <input matInput placeholder="Huesped" formControlName="huesped">
+            </mat-form-field>
+        </div>
+
+        <div class="campo">
+            <label>Habitacion: </label>
+            <mat-form-field class="campos-field">
+                <input matInput placeholder="Habitacion" formControlName="habitacion">
+            </mat-form-field>
+        </div>
+
+        <div class="campo">
+            <label>Valor pagado: </label>
+            <mat-form-field class="campos-field">
+                <input matInput placeholder="Valor pagado" formControlName="valor_pagado">
+            </mat-form-field>
+        </div>
+
+        <div class="campo">
+            <label>Fecha Inicio: </label>
+            <mat-form-field class="campos-field">
+                <input matInput [matDatepicker]="pickerInicio" placeholder="Fecha Inicio" formControlName="fecha_inicio"
+                    readonly>
+                <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                <mat-datepicker #pickerInicio></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="campo">
+            <label>Fecha Fin: </label>
+            <mat-form-field class="campos-field">
+                <input matInput [matDatepicker]="pickerFin" placeholder="Fecha Fin" formControlName="fecha_fin"
+                    readonly>
+                <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFin></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="button-struct">
+            <!-- <button *ngIf="this.data.dataModal.id_tipo_pago === 2" mat-raised-button color="primary"
+                (click)="seeHistoric()">
+                Ver Detalle
+            </button>
+            <button mat-raised-button color="accent" (click)="cancel()">Cerrar</button> -->
+            <button mat-raised-button color="primary" (click)="save()">Guardar</button>
+        </div>
+    </form>
+</mat-card>
