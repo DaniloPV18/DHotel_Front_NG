@@ -7,6 +7,9 @@ import { GuestsService } from '../../../../services/guests.service';
 import { Guests } from '../../../../interfaces/guests';
 import { UsersConfirmationComponent } from '../../users/users-confirmation/users-confirmation.component';
 import { UsersUpdateComponent } from '../../users/users-update/users-update.component';
+import { GuestUpdateComponent } from '../guest-update/guest-update.component';
+import { GuestConfirmationComponent } from '../guest-confirmation/guest-confirmation.component';
+import { GuestCreateComponent } from '../guest-create/guest-create.component';
 
 @Component({
   selector: 'app-guests-list',
@@ -32,8 +35,17 @@ export class GuestsListComponent implements AfterViewInit  {
 
   displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'celular', 'genero', 'registrado', 'fecha_registro', 'fecha_modificacion', 'accion'];
 
+  addGuest(){
+    this._dialogRef.open(GuestCreateComponent, {
+      width: '30%',
+      data: {
+        dataModal: 'Add'
+      }
+    })
+  }
+
   seeModal(element: Guests) {
-    this._dialogRef.open(UsersUpdateComponent, {
+    this._dialogRef.open(GuestUpdateComponent, {
       width: '30%',
       data: {
         dataModal: element
@@ -42,7 +54,7 @@ export class GuestsListComponent implements AfterViewInit  {
   }
 
   deleteEntity(element: Guests) {
-    var text = "¿Está seguro que desea <b>desactivar</b> la cuenta?";
+    var text = "¿Está seguro que desea <b>desactivar</b> desactivar el servicio?";
     this._dialogRef.open(UsersConfirmationComponent, {
       width: '30%',
       data: {
@@ -54,8 +66,8 @@ export class GuestsListComponent implements AfterViewInit  {
   }
 
   activateEntity(element: Guests) {
-    var text = "¿Está seguro que desea <b>activar</b> la cuenta?";
-    this._dialogRef.open(UsersConfirmationComponent, {
+    var text = "¿Está seguro que desea <b>activar</b> servicios?";
+    this._dialogRef.open(GuestConfirmationComponent, {
       width: '30%',
       data: {
         dataModal: element,

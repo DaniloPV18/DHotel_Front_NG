@@ -1,15 +1,14 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { UsersService } from '../../../../services/users.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { Users } from '../../../../interfaces/users';
-import { UsersUpdateComponent } from '../../users/users-update/users-update.component';
 import { UsersConfirmationComponent } from '../../users/users-confirmation/users-confirmation.component';
 import { RoomsService } from '../../../../services/rooms.service';
 import { Rooms } from '../../../../interfaces/rooms';
 import { RoomUpdateComponent } from '../room-update/room-update.component';
+import { RoomConfirmationComponent } from '../room-confirmation/room-confirmation.component';
+import { RoomCreateComponent } from '../room-create/room-create.component';
 @Component({
   selector: 'app-rooms-list',
   templateUrl: './rooms-list.component.html',
@@ -44,9 +43,18 @@ export class RoomsListComponent {
     });
   }
 
+  createRoom(){
+    this._dialogRef.open(RoomCreateComponent, {
+      width: '30%',
+      data: {
+        dataModel: "test"
+      }
+    });
+  }
+
   deleteEntity(element: Rooms) {
-    var text = "¿Está seguro que desea <b>desactivar</b> la cuenta?";
-    this._dialogRef.open(UsersConfirmationComponent, {
+    var text = "¿Está seguro que desea <b>desactivar</b> la habitación?";
+    this._dialogRef.open(RoomConfirmationComponent, {
       width: '30%',
       data: {
         dataModal: element,
@@ -57,7 +65,7 @@ export class RoomsListComponent {
   }
 
   activateEntity(element: Rooms) {
-    var text = "¿Está seguro que desea <b>activar</b> la cuenta?";
+    var text = "¿Está seguro que desea <b>activar</b> la habitación?";
     this._dialogRef.open(UsersConfirmationComponent, {
       width: '30%',
       data: {

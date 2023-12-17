@@ -1,0 +1,57 @@
+<mat-card>
+  <div class="form-title">
+      <mat-card-title class="txt-center">{{this.data.dataText}}</mat-card-title>
+  </div>
+  <form [formGroup]="formCreate" class="form-struct">
+    <div class="campo">
+      <label>Cédula </label>
+      <mat-form-field class="campos-field">
+          <input matInput placeholder="0999999999" formControlName="huesped">
+      </mat-form-field>
+    </div>
+    <div class="campo">
+      <label>Nombres </label>
+      <mat-form-field class="campos-field">
+          <input matInput placeholder="Nombres" formControlName="huesped">
+      </mat-form-field>
+    </div>
+    <div class="campo">
+      <label>Apellidos </label>
+      <mat-form-field class="campos-field">
+          <input matInput placeholder="Apellidos" formControlName="huesped">
+      </mat-form-field>
+    </div>
+
+    <div class="campo">
+      <label>Celular </label>
+      <mat-form-field class="campos-field">
+          <input matInput placeholder="Celular" formControlName="huesped">
+      </mat-form-field>
+    </div>
+
+    <div class="campo">
+      <label>Género </label>
+        <mat-form-field class="campos-field">
+            <mat-label>Seleccionar</mat-label>
+            <mat-select formControlName="id_rol" matNativeControl required>
+                <mat-option value="Client">Masculino</mat-option>
+                <mat-option value="Administrator">Femenino</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="campo">
+      <label>Registrado por </label>
+        <mat-form-field class="campos-field">
+            <mat-label>Seleccionar</mat-label>
+            <mat-select formControlName="id_rol" matNativeControl required>
+                <mat-option value="Client">Administrador</mat-option>
+                <mat-option value="Administrator">Secretaria</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+      <div class="button-struct">
+          <button mat-raised-button color="primary" (click)="save()">Guardar</button>
+      </div>
+  </form>
+</mat-card>

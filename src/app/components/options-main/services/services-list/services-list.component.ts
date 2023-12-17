@@ -9,6 +9,9 @@ import { UsersUpdateComponent } from '../../users/users-update/users-update.comp
 import { UsersConfirmationComponent } from '../../users/users-confirmation/users-confirmation.component';
 import { Service } from '../../../../interfaces/service';
 import { ServiceService } from '../../../../services/service.service';
+import { ServiceConfirmationComponent } from '../service-confirmation/service-confirmation.component';
+import { ServiceCreateComponent } from '../service-create/service-create.component';
+import { ServiceUpdateComponent } from '../service-update/service-update.component';
 
 @Component({
   selector: 'app-services-list',
@@ -34,8 +37,17 @@ export class ServicesListComponent {
 
   displayedColumns: string[] = ['id', 'nombre', 'codigo_servicio', 'id_personal_registro', 'fecha_registro', 'fecha_modificacion', 'id_estado', 'accion'];
 
-  seeModal(element: Users) {
-    this._dialogRef.open(UsersUpdateComponent, {
+  addService(){
+    this._dialogRef.open(ServiceCreateComponent, {
+      width: '30%',
+      data: {
+        dataModal: "Service Create"
+      }
+    })
+  }
+
+  seeModal(element: Service) {
+    this._dialogRef.open(ServiceUpdateComponent, {
       width: '30%',
       data: {
         dataModal: element
@@ -43,9 +55,9 @@ export class ServicesListComponent {
     });
   }
 
-  deleteEntity(element: Users) {
-    var text = "¿Está seguro que desea <b>desactivar</b> la cuenta?";
-    this._dialogRef.open(UsersConfirmationComponent, {
+  deleteEntity(element: Service) {
+    var text = "¿Está seguro que desea <b>desactivar</b> el servicio?";
+    this._dialogRef.open(ServiceConfirmationComponent, {
       width: '30%',
       data: {
         dataModal: element,
@@ -55,9 +67,9 @@ export class ServicesListComponent {
     });
   }
 
-  activateEntity(element: Users) {
-    var text = "¿Está seguro que desea <b>activar</b> la cuenta?";
-    this._dialogRef.open(UsersConfirmationComponent, {
+  activateEntity(element: Service) {
+    var text = "¿Está seguro que desea <b>activar</b> el servicio?";
+    this._dialogRef.open(ServiceConfirmationComponent, {
       width: '30%',
       data: {
         dataModal: element,

@@ -40,6 +40,14 @@ import { ErrorPageComponent } from './templates/error-page/error-page.component'
 import { RoomsListComponent } from './components/options-main/rooms/rooms-list/rooms-list.component';
 import { ServicesListComponent } from './components/options-main/services/services-list/services-list.component';
 import { RoomUpdateComponent } from './components/options-main/rooms/room-update/room-update.component';
+import { RoomConfirmationComponent } from './components/options-main/rooms/room-confirmation/room-confirmation.component';
+import { RoomCreateComponent } from './components/options-main/rooms/room-create/room-create.component';
+import { GuestCreateComponent } from './components/options-main/guests/guest-create/guest-create.component';
+import { GuestConfirmationComponent } from './components/options-main/guests/guest-confirmation/guest-confirmation.component';
+import { GuestUpdateComponent } from './components/options-main/guests/guest-update/guest-update.component';
+import { ServiceConfirmationComponent } from './components/options-main/services/service-confirmation/service-confirmation.component';
+import { ServiceCreateComponent } from './components/options-main/services/service-create/service-create.component';
+import { ServiceUpdateComponent } from './components/options-main/services/service-update/service-update.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +70,15 @@ import { RoomUpdateComponent } from './components/options-main/rooms/room-update
     ErrorPageComponent,
     RoomsListComponent,
     ServicesListComponent,
-    RoomUpdateComponent
+    RoomUpdateComponent,
+    RoomConfirmationComponent,
+    RoomCreateComponent,
+    GuestCreateComponent,
+    GuestConfirmationComponent,
+    GuestUpdateComponent,
+    ServiceConfirmationComponent,
+    ServiceCreateComponent,
+    ServiceUpdateComponent
   ],
   imports: [
     BrowserModule,

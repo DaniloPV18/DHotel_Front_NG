@@ -1,15 +1,16 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PaysService } from '../../../../services/pays.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-pay-create',
-  templateUrl: './pay-create.component.html',
-  styleUrl: './pay-create.component.css'
+  selector: 'app-service-create',
+  templateUrl: './service-create.component.html',
+  styleUrl: './service-create.component.css'
 })
-export class PayCreateComponent {
-
+export class ServiceCreateComponent {
   constructor(
+    private _paysService: PaysService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 

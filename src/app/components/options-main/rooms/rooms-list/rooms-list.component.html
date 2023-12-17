@@ -1,8 +1,10 @@
 <div>
-  <h1>CÚPULA ADMINISTRATIVA</h1>
+  <h1>CÚPULA ADMINISTRATIVA HABITACIONES
+    <mat-icon>room_preferences</mat-icon>
+  </h1>
 </div>
 <div class="add">
-  <button mat-raised-button color="primary">Agregar habitación</button>
+  <button mat-raised-button color="primary" (click)="createRoom()">Agregar habitación</button>
 </div>
 <div class="container">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
