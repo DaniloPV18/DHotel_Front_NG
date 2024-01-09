@@ -1,12 +1,9 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { UsersService } from '../../../../services/users.service';
+import { AdministratorsService } from '../../../../services/administrators.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { Users } from '../../../../interfaces/users';
-import { UsersUpdateComponent } from '../../users/users-update/users-update.component';
-import { UsersConfirmationComponent } from '../../users/users-confirmation/users-confirmation.component';
 
 @Component({
   selector: 'app-services-list',
@@ -15,24 +12,24 @@ import { UsersConfirmationComponent } from '../../users/users-confirmation/users
 })
 export class ServicesListComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  dataSource: MatTableDataSource<Users>;
+  /* dataSource: MatTableDataSource<Users>; */
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.paginator.pageSize = 8;
+    /* this.dataSource.paginator = this.paginator;
+    this.paginator.pageSize = 8; */
   }
 
   constructor(
-    private _userService: UsersService,
+    private _userService: AdministratorsService,
     private _dialogRef: MatDialog
   ) {
-    this.dataSource = new MatTableDataSource(this._userService.getAllUsers());
-    this.dataSource.paginator = this.paginator;
+    /* this.dataSource = new MatTableDataSource(this._userService.getAllUsers());
+    this.dataSource.paginator = this.paginator; */
   }
 
   displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'email', 'ultima_actividad', 'genero', 'rol', 'accion'];
 
-  seeModal(element: Users) {
+  /* seeModal(element: Users) {
     this._dialogRef.open(UsersUpdateComponent, {
       width: '30%',
       data: {
@@ -63,5 +60,5 @@ export class ServicesListComponent {
         dataStatus: 1
       }
     });
-  }
+  } */
 }

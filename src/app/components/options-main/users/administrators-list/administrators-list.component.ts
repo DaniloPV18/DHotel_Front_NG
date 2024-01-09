@@ -1,21 +1,21 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { UsersService } from '../../../../services/users.service';
+import { AdministratorsService } from '../../../../services/administrators.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { Users } from '../../../../interfaces/users';
-import { UsersUpdateComponent } from '../users-update/users-update.component';
-import { UsersConfirmationComponent } from '../users-confirmation/users-confirmation.component';
+import { Administrators } from '../../../../interfaces/administrators';
+import { AdministratorsUpdateComponent } from '../administrators-update/administrators-update.component';
+import { AdministratorsConfirmationComponent } from '../administrators-confirmation/administrators-confirmation.component';
 
 @Component({
-  selector: 'app-users-list',
-  templateUrl: './users-list.component.html',
-  styleUrl: './users-list.component.css'
+  selector: 'app-administrators-list',
+  templateUrl: './administrators-list.component.html',
+  styleUrl: './administrators-list.component.css'
 })
-export class UsersListComponent implements AfterViewInit {
+export class AdministratorsListComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  dataSource: MatTableDataSource<Users>;
+  dataSource: MatTableDataSource<Administrators>;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -23,17 +23,17 @@ export class UsersListComponent implements AfterViewInit {
   }
 
   constructor(
-    private _userService: UsersService,
+    private _administratorsService: AdministratorsService,
     private _dialogRef: MatDialog
   ) {
-    this.dataSource = new MatTableDataSource(this._userService.getAllUsers());
+    this.dataSource = new MatTableDataSource(this._administratorsService.getAllUsers());
     this.dataSource.paginator = this.paginator;
   }
 
   displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'email', 'ultima_actividad', 'genero', 'rol', 'accion'];
 
-  seeModal(element: Users) {
-    this._dialogRef.open(UsersUpdateComponent, {
+  seeModal(element: Administrators) {
+    this._dialogRef.open(AdministratorsUpdateComponent, {
       width: '30%',
       data: {
         dataModal: element
@@ -41,9 +41,9 @@ export class UsersListComponent implements AfterViewInit {
     });
   }
 
-  deleteEntity(element: Users) {
+  deleteEntity(element: Administrators) {
     var text = "¿Está seguro que desea <b>desactivar</b> la cuenta?";
-    this._dialogRef.open(UsersConfirmationComponent, {
+    this._dialogRef.open(AdministratorsConfirmationComponent, {
       width: '30%',
       data: {
         dataModal: element,
@@ -53,9 +53,9 @@ export class UsersListComponent implements AfterViewInit {
     });
   }
 
-  activateEntity(element: Users) {
+  activateEntity(element: Administrators) {
     var text = "¿Está seguro que desea <b>activar</b> la cuenta?";
-    this._dialogRef.open(UsersConfirmationComponent, {
+    this._dialogRef.open(AdministratorsConfirmationComponent, {
       width: '30%',
       data: {
         dataModal: element,

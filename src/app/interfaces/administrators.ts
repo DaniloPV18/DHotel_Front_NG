@@ -1,4 +1,4 @@
-export interface Users {
+export interface Administrators {
     id?: number;
     cedula?: string;
     nombres?: string;

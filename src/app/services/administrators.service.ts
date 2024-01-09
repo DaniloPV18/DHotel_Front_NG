@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Users } from '../interfaces/users';
+import { Administrators } from '../interfaces/administrators';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class AdministratorsService {
 
-  baseUrl: string = `${environment.endpoint}api/users/`;
-  users: Users[] =
+  baseUrl: string = `${environment.endpoint}api/v1/administrador`;
+  administrators: Administrators[] =
     [
       {
         id: 1,
@@ -147,15 +147,15 @@ export class UsersService {
 
     constructor(private _httpClient: HttpClient) { }
 
-  getAllUsers(): Users[] {
-    return this.users;
+  getAllUsers(): Administrators[] {
+    return this.administrators;
   }
 
-  addUser(user: Users) {
+  addUser(user: Administrators) {
     return this._httpClient.post(`${this.baseUrl}addUser/`, user);
   }
 
-  updateUser(user: Users) {
+  updateUser(user: Administrators) {
     console.log(user);
     //return this._httpClient.post(`${this.baseUrl}updateUser/`, user);
   }

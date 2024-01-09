@@ -5,8 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { GuestsService } from '../../../../services/guests.service';
 import { Guests } from '../../../../interfaces/guests';
-import { UsersConfirmationComponent } from '../../users/users-confirmation/users-confirmation.component';
-import { UsersUpdateComponent } from '../../users/users-update/users-update.component';
+/* import { UsersConfirmationComponent } from '../../users/administrators-confirmation/administrators-confirmation.component';
+import { UsersUpdateComponent } from '../../users/administrators-update/administrators-update.component'; */
 
 @Component({
   selector: 'app-guests-list',
@@ -32,7 +32,7 @@ export class GuestsListComponent implements AfterViewInit  {
 
   displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'celular', 'genero', 'registrado', 'fecha_registro', 'fecha_modificacion', 'accion'];
 
-  seeModal(element: Guests) {
+  /* seeModal(element: Guests) {
     this._dialogRef.open(UsersUpdateComponent, {
       width: '30%',
       data: {
@@ -63,6 +63,6 @@ export class GuestsListComponent implements AfterViewInit  {
         dataStatus: 1
       }
     });
-  }
+  } */
 
 }

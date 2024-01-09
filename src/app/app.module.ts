@@ -24,11 +24,12 @@ import { HeaderComponent } from './templates/header/header.component';
 import { FooterComponent } from './templates/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UsersListComponent } from './components/options-main/users/users-list/users-list.component';
-import { UsersCreateComponent } from './components/options-main/users/users-create/users-create.component';
+
 import { OptionsMainComponent } from './components/options-main/options-main.component';
-import { UsersUpdateComponent } from './components/options-main/users/users-update/users-update.component';
-import { UsersConfirmationComponent } from './components/options-main/users/users-confirmation/users-confirmation.component';
+import { AdministratorsListComponent } from './components/options-main/users/administrators-list/administrators-list.component';
+import { AdministratorsCreateComponent } from './components/options-main/users/administrators-create/administrators-create.component';
+import { AdministratorsUpdateComponent } from './components/options-main/users/administrators-update/administrators-update.component';
+import { AdministratorsConfirmationComponent } from './components/options-main/users/administrators-confirmation/administrators-confirmation.component';
 import { PayListComponent } from './components/options-main/pay/pay-list/pay-list.component';
 import { PayCreateComponent } from './components/options-main/pay/pay-create/pay-create.component';
 import { PayUpdateComponent } from './components/options-main/pay/pay-update/pay-update.component';
@@ -46,11 +47,11 @@ import { ServicesListComponent } from './components/options-main/services/servic
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    UsersListComponent,
-    UsersCreateComponent,
+    AdministratorsListComponent,
+    AdministratorsCreateComponent,
     OptionsMainComponent,
-    UsersUpdateComponent,
-    UsersConfirmationComponent,
+    AdministratorsUpdateComponent,
+    AdministratorsConfirmationComponent,
     PayListComponent,
     PayCreateComponent,
     PayUpdateComponent,

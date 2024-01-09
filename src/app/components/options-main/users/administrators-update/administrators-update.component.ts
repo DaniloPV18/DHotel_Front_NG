@@ -1,22 +1,22 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Users } from '../../../../interfaces/users';
-import { UsersService } from '../../../../services/users.service';
+import { Administrators } from '../../../../interfaces/administrators';
+import { AdministratorsService } from '../../../../services/administrators.service';
 
 @Component({
-  selector: 'app-users-update',
-  templateUrl: './users-update.component.html',
-  styleUrl: './users-update.component.css'
+  selector: 'app-administrators-update',
+  templateUrl: './administrators-update.component.html',
+  styleUrl: './administrators-update.component.css'
 })
 
-export class UsersUpdateComponent {
+export class AdministratorsUpdateComponent {
 
-  user: Users = {};
+  user: Administrators = {};
 
   constructor(
-    private _dialogRef: MatDialogRef<UsersUpdateComponent>,
-    private _usersService: UsersService,
+    private _dialogRef: MatDialogRef<AdministratorsUpdateComponent>,
+    private _administratorsService: AdministratorsService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
   }
@@ -37,7 +37,7 @@ export class UsersUpdateComponent {
   });
 
   onSubmit() {
-    this._usersService.updateUser({
+    this._administratorsService.updateUser({
       id: this.data.dataModal.id,
       cedula: this.formModify.value.cedula ?? this.data.dataModal.cedula,
       nombres: this.formModify.value.nombres ?? this.data.dataModal.nombres,
@@ -51,7 +51,7 @@ export class UsersUpdateComponent {
       id_personal_registro: this.formModify.value.id_personal_registro ?? this.data.dataModal.id_personal_registro,
       id_estado: this.formModify.value.id_estado ?? undefined,
       fecha_modificacion: this.formModify.value.fecha_modificacion ?? this.data.dataModal.fecha_modificacion,
-    } as Users);
+    } as Administrators);
   }
 
   cancel() {
