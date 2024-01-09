@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Users } from '../../../../interfaces/users';
+/* import { Users } from '../../../../interfaces/users';
 import { UsersService } from '../../../../services/users.service';
-import { UsersUpdateComponent } from '../../users/users-update/users-update.component';
+import { UsersUpdateComponent } from '../../users/users-update/users-update.component'; */
 
 @Component({
   selector: 'app-room-update',
@@ -11,16 +11,16 @@ import { UsersUpdateComponent } from '../../users/users-update/users-update.comp
   styleUrl: './room-update.component.css'
 })
 export class RoomUpdateComponent {
-  user: Users = {};
+  /* user: Users = {}; */
 
   constructor(
-    private _dialogRef: MatDialogRef<UsersUpdateComponent>,
+    /* private _dialogRef: MatDialogRef<UsersUpdateComponent>,
     private _usersService: UsersService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any */
   ) {
   }
 
-  formModify = new FormGroup({
+  /* formModify = new FormGroup({
     cedula: new FormControl(this.data.dataModal.cedula, Validators.required),
     nombres: new FormControl(this.data.dataModal.nombres, Validators.required),
     apellidos: new FormControl(this.data.dataModal.apellidos, Validators.required),
@@ -55,5 +55,5 @@ export class RoomUpdateComponent {
 
   cancel() {
     this._dialogRef.close();
-  }
+  } */
 }
