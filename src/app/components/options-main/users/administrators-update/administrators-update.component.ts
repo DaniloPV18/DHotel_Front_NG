@@ -30,7 +30,7 @@ export class AdministratorsUpdateComponent {
     id_genero: new FormControl(this.data.dataModal.id_genero), // Asegúrate de manejar los campos numéricos según tus necesidades
     pwd: new FormControl(this.data.dataModal.pwd),
     fecha_nacimiento: new FormControl(new Date()),
-    id_rol: new FormControl(this.data.dataModal.id_rol),
+    id_rol: new FormControl(this.data.dataModal.rolId),
     id_personal_registro: new FormControl(1),
     id_estado: new FormControl(this.data.dataModal.id_estado),
     fecha_modificacion: new FormControl(new Date()),

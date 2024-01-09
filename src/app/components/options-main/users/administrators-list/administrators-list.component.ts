@@ -26,7 +26,10 @@ export class AdministratorsListComponent implements AfterViewInit {
     private _administratorsService: AdministratorsService,
     private _dialogRef: MatDialog
   ) {
-    this.dataSource = new MatTableDataSource(this._administratorsService.getAllUsers());
+    this.dataSource = new MatTableDataSource<Administrators>();
+    this._administratorsService.getAllUsers().subscribe(data => {
+      this.dataSource.data = data;
+    });
     this.dataSource.paginator = this.paginator;
   }
 
@@ -64,4 +67,9 @@ export class AdministratorsListComponent implements AfterViewInit {
       }
     });
   }
+
+  roles = [
+    { id: 1, nombre: 'Administrador' },
+    { id: 2, nombre: 'Operador' }
+  ];
 }

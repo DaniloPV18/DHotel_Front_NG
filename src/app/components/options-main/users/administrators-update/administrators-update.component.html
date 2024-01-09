@@ -44,8 +44,8 @@
             <mat-form-field class="campos-field">
                 <mat-label>Seleccionar</mat-label>
                 <mat-select formControlName="id_rol" matNativeControl required>
-                    <mat-option value="Client">Cliente</mat-option>
-                    <mat-option value="Administrator">Administrador</mat-option>
+                    <mat-option [value]="1">Administrador</mat-option>
+                    <mat-option [value]="2">Operador</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
