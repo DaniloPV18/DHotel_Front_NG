@@ -1,0 +1,43 @@
+<mat-card>
+  <div class="form-title">
+      <mat-card-title class="txt-center">{{this.data.dataText}}</mat-card-title>
+  </div>
+  <form [formGroup]="formCreate" class="form-struct">
+    <div class="campo">
+      <label>Nombre </label>
+      <mat-form-field class="campos-field">
+          <input matInput placeholder="0999999999" formControlName="huesped">
+      </mat-form-field>
+    </div>
+    <div class="campo">
+      <label>Código de servicio </label>
+      <mat-form-field class="campos-field">
+          <input matInput placeholder="Nombres" formControlName="huesped">
+      </mat-form-field>
+    </div>
+    <div class="campo">
+      <label>Personal que registra el servicio </label>
+        <mat-form-field class="campos-field">
+            <mat-label>Seleccionar</mat-label>
+            <mat-select formControlName="id_rol" matNativeControl required>
+                <mat-option value="Client">Administrador</mat-option>
+                <mat-option value="Administrator">Secretaria</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="campo">
+      <label>Estado</label>
+        <mat-form-field class="campos-field">
+            <mat-label>Seleccionar</mat-label>
+            <mat-select formControlName="id_rol" matNativeControl required>
+                <mat-option value="Client">Activado</mat-option>
+                <mat-option value="Administrator">Desactivado</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+      <div class="button-struct">
+          <button mat-raised-button color="primary" (click)="save()">Guardar</button>
+      </div>
+  </form>
+</mat-card>

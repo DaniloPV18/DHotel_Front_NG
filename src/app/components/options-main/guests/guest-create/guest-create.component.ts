@@ -1,15 +1,18 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PaysService } from '../../../../services/pays.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+
 @Component({
-  selector: 'app-pay-create',
-  templateUrl: './pay-create.component.html',
-  styleUrl: './pay-create.component.css'
+  selector: 'app-guest-create',
+  templateUrl: './guest-create.component.html',
+  styleUrl: './guest-create.component.css'
 })
-export class PayCreateComponent {
+export class GuestCreateComponent {
 
   constructor(
+    private _paysService: PaysService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
@@ -32,4 +35,5 @@ export class PayCreateComponent {
     console.log('Valores del formulario:', formValues);
     //this._paysService.addPay({} as Pays);
   }
+
 }

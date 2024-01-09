@@ -42,7 +42,7 @@ export class GuestsListComponent implements AfterViewInit  {
   }
 
   deleteEntity(element: Guests) {
-    var text = "¿Está seguro que desea <b>desactivar</b> la cuenta?";
+    var text = "¿Está seguro que desea <b>desactivar</b> desactivar el servicio?";
     this._dialogRef.open(UsersConfirmationComponent, {
       width: '30%',
       data: {
@@ -54,8 +54,8 @@ export class GuestsListComponent implements AfterViewInit  {
   }
 
   activateEntity(element: Guests) {
-    var text = "¿Está seguro que desea <b>activar</b> la cuenta?";
-    this._dialogRef.open(UsersConfirmationComponent, {
+    var text = "¿Está seguro que desea <b>activar</b> servicios?";
+    this._dialogRef.open(GuestConfirmationComponent, {
       width: '30%',
       data: {
         dataModal: element,

@@ -33,8 +33,8 @@ export class RoomsListComponent {
 
   /* displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'email', 'ultima_actividad', 'genero', 'rol', 'accion'];
 
-  seeModal(element: Users) {
-    this._dialogRef.open(UsersUpdateComponent, {
+  seeModal(element: Rooms) {
+    this._dialogRef.open(RoomUpdateComponent, {
       width: '30%',
       data: {
         dataModal: element
@@ -42,9 +42,18 @@ export class RoomsListComponent {
     });
   }
 
-  deleteEntity(element: Users) {
-    var text = "¿Está seguro que desea <b>desactivar</b> la cuenta?";
-    this._dialogRef.open(UsersConfirmationComponent, {
+  createRoom(){
+    this._dialogRef.open(RoomCreateComponent, {
+      width: '30%',
+      data: {
+        dataModel: "test"
+      }
+    });
+  }
+
+  deleteEntity(element: Rooms) {
+    var text = "¿Está seguro que desea <b>desactivar</b> la habitación?";
+    this._dialogRef.open(RoomConfirmationComponent, {
       width: '30%',
       data: {
         dataModal: element,
@@ -54,8 +63,8 @@ export class RoomsListComponent {
     });
   }
 
-  activateEntity(element: Users) {
-    var text = "¿Está seguro que desea <b>activar</b> la cuenta?";
+  activateEntity(element: Rooms) {
+    var text = "¿Está seguro que desea <b>activar</b> la habitación?";
     this._dialogRef.open(UsersConfirmationComponent, {
       width: '30%',
       data: {

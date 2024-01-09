@@ -3,13 +3,10 @@
 </div>
 <div class="container">
 
-    <button class="button-main buttons-margin" (click)="create(1)">
-        REGISTRAR NUEVO PAGO DIRECTO
-    </button>
-
-    <button class="button-main buttons-margin" (click)="create(2)">
-        REGISTRAR NUEVA RESERVA
-    </button>
+    <div class="options">
+      <button mat-raised-button color="primary" (click)="create(1)">REGISTRAR NUEVO PAGO DIRECTO</button>
+     <button mat-raised-button color="primary" (click)="create(2)">REGISTRAR NUEVA RESERVA</button>
+    </div>
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -63,12 +60,12 @@
             <th mat-header-cell *matHeaderCellDef> Accion </th>
             <td mat-cell *matCellDef="let element">
                 <div class="buttons">
-                    <button class="button-details buttons-margin" (click)="seeDetails(element)">
-                        Ver Detalle
+                    <button mat-mini-fab color="primary" title="ver detalle" (click)="seeDetails(element)">
+                      <mat-icon>visibility</mat-icon>
                     </button>
-                    <button *ngIf="element.id_tipo_pago === 1" class="button-historic buttons-margin"
-                        (click)="deleteElement(element)">
-                        Anular
+                    <button mat-mini-fab color="warn" title="anular" (click)="seeDetails(element)" *ngIf="element.id_tipo_pago === 1"
+                    (click)="deleteElement(element)">
+                      <mat-icon>do_not_disturb_on</mat-icon>
                     </button>
                 </div>
             </td>

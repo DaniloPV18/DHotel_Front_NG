@@ -1,0 +1,40 @@
+<mat-card>
+  <div class="form-title">
+      <mat-card-title class="txt-center">{{this.data.dataText}}</mat-card-title>
+  </div>
+  <form [formGroup]="formCreate" class="form-struct">
+      <div class="campo">
+        <label>Tipo habitación </label>
+        <mat-form-field class="campos-field">
+            <mat-label>Seleccionar</mat-label>
+            <mat-select formControlName="id_rol" matNativeControl required>
+                <mat-option value="Client">Pequeña</mat-option>
+                <mat-option value="Administrator">Normal</mat-option>
+                <mat-option value="Administrator">Grande</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="campo">
+      <label>Nro. habitación </label>
+      <mat-form-field class="campos-field">
+          <input matInput placeholder="Huesped" formControlName="huesped">
+      </mat-form-field>
+    </div>
+    <div class="campo">
+      <label>Precio </label>
+      <mat-form-field class="campos-field">
+          <input matInput placeholder="Huesped" formControlName="huesped">
+      </mat-form-field>
+    </div>
+    <div class="campo">
+      <label>Estado </label>
+      <mat-form-field class="campos-field">
+          <input matInput placeholder="Huesped" formControlName="huesped">
+      </mat-form-field>
+    </div>
+      <div class="button-struct">
+          <button mat-raised-button color="primary" (click)="save()">Guardar</button>
+      </div>
+  </form>
+</mat-card>

@@ -1,6 +1,6 @@
-<mat-card>
+<mat-card class="card">
     <div class="form-title">
-        <mat-card-title class="form-title-style">Modificar Usuario</mat-card-title>
+        <mat-card-title class="txt-center">Modificar Usuario</mat-card-title>
     </div>
     <form [formGroup]="formModify" class="form-struct">
 
@@ -42,11 +42,11 @@
         <div class="campo">
             <label>Rol: </label>
             <mat-form-field class="campos-field">
-                <mat-label>Rol</mat-label>
-                <select formControlName="id_rol" matNativeControl required>
-                    <option value="Client">Cliente</option>
-                    <option value="Administrator">Administrador</option>
-                </select>
+                <mat-label>Seleccionar</mat-label>
+                <mat-select formControlName="id_rol" matNativeControl required>
+                    <mat-option value="Client">Cliente</mat-option>
+                    <mat-option value="Administrator">Administrador</mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
 

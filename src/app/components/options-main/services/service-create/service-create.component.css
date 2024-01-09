@@ -1,0 +1,11 @@
+.form-struct {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.campo {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
