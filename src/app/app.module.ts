@@ -16,6 +16,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 
+import { CommonModule } from '@angular/common';
+
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
@@ -88,6 +90,7 @@ import { ServiceUpdateComponent } from './components/options-main/services/servi
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    CommonModule,
     /* ANGULAR MATERIAL */
     MatIconModule,
     MatButtonModule,

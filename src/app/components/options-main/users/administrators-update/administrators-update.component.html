@@ -28,14 +28,18 @@
         <div class="campo">
             <label>Email: </label>
             <mat-form-field class="campos-field">
-                <input matInput placeholder="Correo Electrónico" formControlName="correo">
+                <input matInput placeholder="Correo Electrónico" formControlName="email">
             </mat-form-field>
         </div>
 
         <div class="campo">
             <label>Género: </label>
             <mat-form-field class="campos-field">
-                <input matInput placeholder="Genero" formControlName="id_genero">
+                <mat-label>Seleccionar</mat-label>
+                <mat-select formControlName="generoId" matNativeControl required>
+                    <mat-option [value]="1">Masculino</mat-option>
+                    <mat-option [value]="2">Femenino</mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
 
@@ -43,7 +47,7 @@
             <label>Rol: </label>
             <mat-form-field class="campos-field">
                 <mat-label>Seleccionar</mat-label>
-                <mat-select formControlName="id_rol" matNativeControl required>
+                <mat-select formControlName="rolId" matNativeControl required>
                     <mat-option [value]="1">Administrador</mat-option>
                     <mat-option [value]="2">Operador</mat-option>
                 </mat-select>

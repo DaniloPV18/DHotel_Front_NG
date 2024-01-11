@@ -27,7 +27,7 @@ export class AdministratorsListComponent implements AfterViewInit {
     private _dialogRef: MatDialog
   ) {
     this.dataSource = new MatTableDataSource<Administrators>();
-    this._administratorsService.getAllUsers().subscribe(data => {
+    this._administratorsService.getAll().subscribe(data => {
       this.dataSource.data = data;
     });
     this.dataSource.paginator = this.paginator;
@@ -41,35 +41,30 @@ export class AdministratorsListComponent implements AfterViewInit {
       data: {
         dataModal: element
       }
+    }).afterClosed().subscribe(result => {
+      if (result === 'updated') {
+        this.loadData();
+      }
     });
   }
 
-  deleteEntity(element: Administrators) {
-    var text = "¿Está seguro que desea <b>desactivar</b> la cuenta?";
+  statusEntity(element: Administrators) {
+    var statusText = element.estadoId === 1 ? "desactivar" : "activar";
+    var statusValue = element.estadoId === 1 ? 0 : 1;
+    var text = `¿Está seguro que desea <b>${statusText}</b> la cuenta?`;
     this._dialogRef.open(AdministratorsConfirmationComponent, {
       width: '30%',
       data: {
         dataModal: element,
         dataText: text,
-        dataStatus: 0
+        dataStatus: statusValue
       }
     });
   }
 
-  activateEntity(element: Administrators) {
-    var text = "¿Está seguro que desea <b>activar</b> la cuenta?";
-    this._dialogRef.open(AdministratorsConfirmationComponent, {
-      width: '30%',
-      data: {
-        dataModal: element,
-        dataText: text,
-        dataStatus: 1
-      }
+  loadData() {
+    this._administratorsService.getAll().subscribe(data => {
+      this.dataSource.data = data;
     });
   }
-
-  roles = [
-    { id: 1, nombre: 'Administrador' },
-    { id: 2, nombre: 'Operador' }
-  ];
 }

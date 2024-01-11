@@ -11,7 +11,7 @@ export class OptionsMainComponent {
   constructor(private _router: Router) { }
 
   navegatePersonal() {
-    this._router.navigate(['/users']);
+    this._router.navigate(['/administrators']);
   }
 
   navegateServices() {

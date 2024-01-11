@@ -12,7 +12,7 @@ import { ServicesListComponent } from './components/options-main/services/servic
 const routes: Routes = [
   { path: "", component: LoginComponent },
   { path: "main", component: OptionsMainComponent },
-  { path: "users", component: AdministratorsListComponent },
+  { path: "administrators", component: AdministratorsListComponent },
   { path: "pays", component: PayListComponent },
   { path: "guests", component: GuestsListComponent},
   { path: "rooms", component: RoomsListComponent},

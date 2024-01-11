@@ -19,3 +19,18 @@ export interface Administrators {
     pagos?: any[]; // Reemplaza any con el tipo adecuado
     servicioOfrecido?: any[]; // Reemplaza any con el tipo adecuado
 }
+
+export interface AdministratorsUpdate{
+    id?: number;
+    cedula?: string;
+    nombres?: string;
+    apellidos?: string;
+    celular?: string;
+    email?: string;
+    generoId?: number;
+    fechaNacimiento?: string | null; // Fecha como string o null
+    rolId?: number;
+    administradorId?: number | null; // Puede ser un número o null    
+    estadoId?: number;
+    fechaModificacion?: string | null; // Fecha como string o null
+}

@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Administrators } from '../../../../interfaces/administrators';
+import { Administrators, AdministratorsUpdate } from '../../../../interfaces/administrators';
 import { AdministratorsService } from '../../../../services/administrators.service';
 
 @Component({
@@ -26,32 +26,38 @@ export class AdministratorsUpdateComponent {
     nombres: new FormControl(this.data.dataModal.nombres, Validators.required),
     apellidos: new FormControl(this.data.dataModal.apellidos, Validators.required),
     celular: new FormControl(this.data.dataModal.celular), // Puedes agregar más campos según sea necesario
-    correo: new FormControl(this.data.dataModal.correo, Validators.required),
-    id_genero: new FormControl(this.data.dataModal.id_genero), // Asegúrate de manejar los campos numéricos según tus necesidades
+    email: new FormControl(this.data.dataModal.email, Validators.required),
+    generoId: new FormControl(this.data.dataModal.generoId), // Asegúrate de manejar los campos numéricos según tus necesidades
     pwd: new FormControl(this.data.dataModal.pwd),
-    fecha_nacimiento: new FormControl(new Date()),
-    id_rol: new FormControl(this.data.dataModal.rolId),
-    id_personal_registro: new FormControl(1),
-    id_estado: new FormControl(this.data.dataModal.id_estado),
-    fecha_modificacion: new FormControl(new Date()),
+    fechaNacimiento: new FormControl(new Date()),
+    rolId: new FormControl(this.data.dataModal.rolId),
+    administradorId: new FormControl(1),
+    estadoId: new FormControl(this.data.dataModal.estadoId)
   });
 
   onSubmit() {
-    this._administratorsService.updateUser({
+    this._administratorsService.update({
       id: this.data.dataModal.id,
       cedula: this.formModify.value.cedula ?? this.data.dataModal.cedula,
       nombres: this.formModify.value.nombres ?? this.data.dataModal.nombres,
       apellidos: this.formModify.value.apellidos ?? this.data.dataModal.apellidos,
       celular: this.formModify.value.celular ?? this.data.dataModal.celular,
-      correo: this.formModify.value.correo ?? this.data.dataModal.correo,
-      id_genero: this.formModify.value.id_genero !== undefined ? parseInt(this.formModify.value.id_genero, 10) : null,
-      pwd: this.formModify.value.pwd ?? this.data.dataModal.pwd,
-      fecha_nacimiento: this.formModify.value.fecha_nacimiento ?? this.data.dataModal.fecha_nacimiento,
-      id_rol: this.formModify.value.id_rol ?? undefined,
-      id_personal_registro: this.formModify.value.id_personal_registro ?? this.data.dataModal.id_personal_registro,
-      id_estado: this.formModify.value.id_estado ?? undefined,
-      fecha_modificacion: this.formModify.value.fecha_modificacion ?? this.data.dataModal.fecha_modificacion,
-    } as Administrators);
+      email: this.formModify.value.email ?? this.data.dataModal.email,
+      generoId: this.formModify.value.generoId ?? this.data.dataModal.generoId,
+      fechaNacimiento: this.formModify.value.fechaNacimiento ?? this.data.dataModal.fechaNacimiento,
+      rolId: this.formModify.value.rolId ?? this.data.dataModal.rolId,
+      administradorId: this.formModify.value.administradorId ?? this.data.dataModal.administradorId,
+      estadoId: this.formModify.value.estadoId ?? this.data.dataModal.estadoId,
+      fechaModificacion: new Date().toISOString()
+    } as AdministratorsUpdate).subscribe(
+      (response) => {
+        this._dialogRef.close('updated');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    this._dialogRef.close();
   }
 
   cancel() {
