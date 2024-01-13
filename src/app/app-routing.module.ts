@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { OptionsMainComponent } from './components/options-main/options-main.component';
-import { AdministratorsListComponent } from './components/options-main/users/administrators-list/administrators-list.component';
+import { AdministratorsListComponent } from './components/options-main/administrators/administrators-list/administrators-list.component';
 import { PayListComponent } from './components/options-main/pay/pay-list/pay-list.component';
 import { GuestsListComponent } from './components/options-main/guests/guests-list/guests-list.component';
 import { ErrorPageComponent } from './templates/error-page/error-page.component';

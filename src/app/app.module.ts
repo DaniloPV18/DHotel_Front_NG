@@ -29,10 +29,10 @@ import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { OptionsMainComponent } from './components/options-main/options-main.component';
-import { AdministratorsListComponent } from './components/options-main/users/administrators-list/administrators-list.component';
-import { AdministratorsCreateComponent } from './components/options-main/users/administrators-create/administrators-create.component';
-import { AdministratorsUpdateComponent } from './components/options-main/users/administrators-update/administrators-update.component';
-import { AdministratorsConfirmationComponent } from './components/options-main/users/administrators-confirmation/administrators-confirmation.component';
+import { AdministratorsListComponent } from './components/options-main/administrators/administrators-list/administrators-list.component';
+import { AdministratorsCreateComponent } from './components/options-main/administrators/administrators-create/administrators-create.component';
+import { AdministratorsUpdateComponent } from './components/options-main/administrators/administrators-update/administrators-update.component';
+import { AdministratorsConfirmationComponent } from './components/options-main/administrators/administrators-confirmation/administrators-confirmation.component';
 import { PayListComponent } from './components/options-main/pay/pay-list/pay-list.component';
 import { PayCreateComponent } from './components/options-main/pay/pay-create/pay-create.component';
 import { PayUpdateComponent } from './components/options-main/pay/pay-update/pay-update.component';
