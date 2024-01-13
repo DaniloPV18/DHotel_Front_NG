@@ -54,24 +54,6 @@
             </mat-form-field>
         </div>
 
-        <!-- <mat-form-field class="campos-field">
-            <input matInput placeholder="Contraseña" formControlName="password">
-        </mat-form-field> -->
-
-
-
-        <!-- <mat-form-field appearance="fill" class="campos-field">
-            <mat-label>Rol</mat-label>
-            <mat-select formControlName="rol" [formControl]="rolControl" required ngDefaultControl>
-                <mat-option>Seleccione un rol</mat-option>
-                <mat-option *ngFor="let Rol of roles" [value]="Rol.Codigo">
-                    {{Rol.Descripcion}}
-                </mat-option>
-            </mat-select>
-            <mat-error *ngIf="rolControl.hasError('required')">Elija un rol</mat-error>
-            <mat-hint>{{rolControl.value?.Codigo}}</mat-hint>
-        </mat-form-field> -->
-
         <div class="button-struct">
             <button mat-raised-button color="primary" [disabled]="!formModify.valid"
                 (click)="onSubmit()">Aceptar</button>

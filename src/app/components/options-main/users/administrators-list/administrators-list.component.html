@@ -2,77 +2,76 @@
     <h1>CÚPULA ADMINISTRATIVA</h1>
 </div>
 <div class="container">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <div class="options">
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="cedula">
-            <th mat-header-cell *matHeaderCellDef> Cedula </th>
-            <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
-        </ng-container>
+        <button class="text-center" mat-raised-button color="primary" (click)="create()">CREAR ADMINISTRADOR</button>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="nombres">
-            <th mat-header-cell *matHeaderCellDef> Nombres </th>
-            <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
-        </ng-container>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="apellidos">
-            <th mat-header-cell *matHeaderCellDef> Apellidos </th>
-            <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
-        </ng-container>
+            <!-- Position Column -->
+            <ng-container matColumnDef="cedula">
+                <th mat-header-cell *matHeaderCellDef> Cedula </th>
+                <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
+            </ng-container>
 
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef> Email </th>
-            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-        </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="nombres">
+                <th mat-header-cell *matHeaderCellDef> Nombres </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+            </ng-container>
 
-        <ng-container matColumnDef="ultima_actividad">
-            <th mat-header-cell *matHeaderCellDef> Ultima Actividad </th>
-            <td mat-cell *matCellDef="let element"> {{element.ultimaActividad}} </td>
-        </ng-container>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="apellidos">
+                <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+                <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+            </ng-container>
 
-        <ng-container matColumnDef="genero">
-            <th mat-header-cell *matHeaderCellDef> Genero </th>
-            <td mat-cell *matCellDef="let element">
-                <label *ngIf="element.generoId === 1">Hombre</label>
-                <label *ngIf="element.generoId === 2">Mujer</label>
-            </td>
-        </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
 
-        <!-- <ng-container matColumnDef="estado">
-            <th mat-header-cell *matHeaderCellDef> Estado </th>
-            <td mat-cell *matCellDef="let element"> {{element.id_estado}} </td>
-        </ng-container> -->
+            <ng-container matColumnDef="ultima_actividad">
+                <th mat-header-cell *matHeaderCellDef> Ultima Actividad </th>
+                <td mat-cell *matCellDef="let element"> {{element.ultimaActividad}} </td>
+            </ng-container>
 
-        <ng-container matColumnDef="rol">
-            <th mat-header-cell *matHeaderCellDef> Rol </th>
-            <td mat-cell *matCellDef="let element">
-                <label *ngIf="element.rolId === 1"><b>Administrador</b></label>
-                <label *ngIf="element.rolId === 2">Operador</label>
-            </td>
-        </ng-container>
+            <ng-container matColumnDef="genero">
+                <th mat-header-cell *matHeaderCellDef> Genero </th>
+                <td mat-cell *matCellDef="let element">
+                    <label *ngIf="element.generoId === 1">Hombre</label>
+                    <label *ngIf="element.generoId === 2">Mujer</label>
+                </td>
+            </ng-container>
 
-        <ng-container matColumnDef="accion">
-            <th mat-header-cell *matHeaderCellDef> Accion </th>
-            <td mat-cell *matCellDef="let element">
-                <div class="buttons">
-                    <button mat-mini-fab color="primary" (click)="seeModal(element)">
-                        <mat-icon>visibility</mat-icon>
-                    </button>
-                    <button mat-raised-button [color]="element.estadoId === 1 ? 'warn' : 'primary'"
-                        (click)="statusEntity(element)">
-                        {{ element.estadoId === 1 ? 'Desactivar' : 'Activar' }}
-                    </button>
-                </div>
-            </td>
-        </ng-container>
+            <ng-container matColumnDef="rol">
+                <th mat-header-cell *matHeaderCellDef> Rol </th>
+                <td mat-cell *matCellDef="let element">
+                    <label *ngIf="element.rolId === 1"><b>Administrador</b></label>
+                    <label *ngIf="element.rolId === 2">Operador</label>
+                </td>
+            </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <div class="paginator">
-        <mat-paginator [pageSizeOptions]="[8, 10, 20]" showFirstLastButtons></mat-paginator>
+            <ng-container matColumnDef="accion">
+                <th mat-header-cell *matHeaderCellDef> Accion </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="buttons">
+                        <button mat-mini-fab color="primary" (click)="seeModal(element)">
+                            <mat-icon>visibility</mat-icon>
+                        </button>
+                        <button mat-raised-button [color]="element.estadoId === 1 ? 'warn' : 'primary'"
+                            (click)="statusEntity(element)">
+                            {{ element.estadoId === 1 ? 'Desactivar' : 'Activar' }}
+                        </button>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div class="paginator">
+            <mat-paginator [pageSizeOptions]="[8, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
     </div>
-</div>

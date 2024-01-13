@@ -34,3 +34,17 @@ export interface AdministratorsUpdate{
     estadoId?: number;
     fechaModificacion?: string | null; // Fecha como string o null
 }
+
+export interface AdministratorsCreate{
+    cedula?: string;
+    nombres?: string;
+    apellidos?: string;
+    celular?: string;
+    email?: string;
+    generoId?: number;
+    fechaNacimiento?: string | null; // Fecha como string o null
+    rolId?: number;
+    administradorId?: number | null; // Puede ser un número o null    
+    estadoId?: number;
+    fechaModificacion?: string | null; // Fecha como string o null
+}

@@ -22,7 +22,6 @@ export class AdministratorsService {
   }
 
   update(administrator: AdministratorsUpdate): Observable<any> {
-    debugger;
     return this._httpClient.put(`${this.baseUrl}/administrador/update`, administrator);
   }
 

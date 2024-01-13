@@ -1,8 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Administrators, AdministratorsUpdate } from '../../../../interfaces/administrators';
+import { AdministratorsUpdate } from '../../../../interfaces/administrators';
 import { AdministratorsService } from '../../../../services/administrators.service';
+import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
 
 @Component({
   selector: 'app-administrators-update',
@@ -12,11 +13,10 @@ import { AdministratorsService } from '../../../../services/administrators.servi
 
 export class AdministratorsUpdateComponent {
 
-  user: Administrators = {};
-
   constructor(
     private _dialogRef: MatDialogRef<AdministratorsUpdateComponent>,
     private _administratorsService: AdministratorsService,
+    private _alertService: AlertConfirmationService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
   }
@@ -49,15 +49,19 @@ export class AdministratorsUpdateComponent {
       administradorId: this.formModify.value.administradorId ?? this.data.dataModal.administradorId,
       estadoId: this.formModify.value.estadoId ?? this.data.dataModal.estadoId,
       fechaModificacion: new Date().toISOString()
-    } as AdministratorsUpdate).subscribe(
-      (response) => {
-        this._dialogRef.close('updated');
-      },
+    } as AdministratorsUpdate).subscribe((response) => {
+      this._alertService.showSuccessAlert('Administrador actualizado con éxito', 1)
+        .then((result) => {
+          if (result.isConfirmed) { this._dialogRef.close('updated'); }
+        });
+    },
       (error) => {
         console.log(error);
+        this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2)
+        .then((result) => {          
+        });
       }
     );
-    this._dialogRef.close();
   }
 
   cancel() {

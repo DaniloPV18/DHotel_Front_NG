@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Administrators } from '../../../../interfaces/administrators';
 import { AdministratorsUpdateComponent } from '../administrators-update/administrators-update.component';
 import { AdministratorsConfirmationComponent } from '../administrators-confirmation/administrators-confirmation.component';
+import { AdministratorsCreateComponent } from '../administrators-create/administrators-create.component';
 
 @Component({
   selector: 'app-administrators-list',
@@ -35,6 +36,21 @@ export class AdministratorsListComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'email', 'ultima_actividad', 'genero', 'rol', 'accion'];
 
+  create() {
+    var text = " ";
+    this._dialogRef.open(AdministratorsCreateComponent, {
+      width: '40%',
+      data: {
+        dataText: text
+      }
+    }).afterClosed().subscribe(result => {
+      debugger;
+      if (result === 'updated') {        
+        this.loadData();
+      }
+    });
+  }
+
   seeModal(element: Administrators) {
     this._dialogRef.open(AdministratorsUpdateComponent, {
       width: '30%',
@@ -58,6 +74,10 @@ export class AdministratorsListComponent implements AfterViewInit {
         dataModal: element,
         dataText: text,
         dataStatus: statusValue
+      }
+    }).afterClosed().subscribe(result => {
+      if (result === 'updated') {
+        this.loadData();
       }
     });
   }

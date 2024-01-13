@@ -1,0 +1,25 @@
+.card {
+  padding: 1rem;
+}
+
+.form-flex {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form-struct {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+}
+
+.button-struct {
+  display: flex;
+  justify-content: space-around;
+}

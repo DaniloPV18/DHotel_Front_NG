@@ -14,9 +14,13 @@ div h1 {
     margin: 2% 4% 5% 5%;
 }
 
-.buttons{
-  display: flex;
-  gap: 2rem;
+.text-center {
+    margin-bottom: 1%;
+}
+
+.buttons {
+    display: flex;
+    gap: 2rem;
 }
 
 .buttons-main {
@@ -93,7 +97,7 @@ img {
     width: 1em;
 }
 
-.paginator{
+.paginator {
     margin: 2% 0%;
 }
 

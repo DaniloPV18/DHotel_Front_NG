@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AdministratorsService } from '../../../../services/administrators.service';
 import { Administrators } from '../../../../interfaces/administrators';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
 
 @Component({
   selector: 'app-administrators-confirmation',
@@ -18,7 +18,7 @@ export class AdministratorsConfirmationComponent {
   constructor(
     private _dialogRef: MatDialogRef<AdministratorsConfirmationComponent>,
     private _administratorsService: AdministratorsService,
-    private _router: Router,
+    private _alertService: AlertConfirmationService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.administradorSubscription = new Subscription();
@@ -35,11 +35,17 @@ export class AdministratorsConfirmationComponent {
     this.administradorSubscription = this._administratorsService.changeStatus(this.data.dataModal as Administrators, this.data.dataStatus as number)
       .subscribe(
         (response) => {
-          this._router.navigate(['/administrators']);
+          this._alertService.showSuccessAlert('Estado actualizado con éxito', 1)
+            .then((result) => {
+              if (result.isConfirmed) { this._dialogRef.close('updated'); }
+            });
         },
-        (error) => {
-          console.error('Error al actualizar el administrador', error);
-        }
+          (error) => {
+            console.log(error);
+            this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2)
+            .then((result) => {          
+            });
+          }
       );
     this._dialogRef.close();
   }
