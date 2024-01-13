@@ -20,3 +20,7 @@ body{
 .txt-center{
   text-align: center;
 }
+
+.custom-swal {
+  width: 100%; 
+}
