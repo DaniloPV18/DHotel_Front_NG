@@ -42,7 +42,6 @@ export class AdministratorsListComponent implements AfterViewInit {
         dataText: text
       }
     }).afterClosed().subscribe(result => {
-      debugger;
       if (result === 'updated') {        
         this.loadData();
       }

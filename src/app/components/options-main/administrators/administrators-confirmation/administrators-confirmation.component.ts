@@ -22,7 +22,6 @@ export class AdministratorsConfirmationComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.administradorSubscription = new Subscription();
-
   }
 
   ngOnDestroy() {
@@ -47,7 +46,6 @@ export class AdministratorsConfirmationComponent {
             });
           }
       );
-    this._dialogRef.close();
   }
 
   cancel() {

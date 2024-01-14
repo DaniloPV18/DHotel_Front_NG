@@ -18,8 +18,7 @@ export class AdministratorsUpdateComponent {
     private _administratorsService: AdministratorsService,
     private _alertService: AlertConfirmationService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
-  }
+  ) { }
 
   formModify = new FormGroup({
     cedula: new FormControl(this.data.dataModal.cedula, Validators.required),
@@ -58,8 +57,8 @@ export class AdministratorsUpdateComponent {
       (error) => {
         console.log(error);
         this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2)
-        .then((result) => {          
-        });
+          .then((result) => {
+          });
       }
     );
   }
