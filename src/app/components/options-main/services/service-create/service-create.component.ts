@@ -1,7 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PaysService } from '../../../../services/pays.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ServiceService } from '../../../../services/service.service';
+import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
+import { Service } from '../../../../interfaces/service';
 
 @Component({
   selector: 'app-service-create',
@@ -9,28 +11,40 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrl: './service-create.component.css'
 })
 export class ServiceCreateComponent {
-  constructor(
-    private _paysService: PaysService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
 
-  formCreate = new FormGroup({
-    id: new FormControl('', Validators.required),
-    encargado: new FormControl('', Validators.required),
-    huesped: new FormControl('', Validators.required),
-    habitacion: new FormControl('', Validators.required),
-    tipo_pago: new FormControl(this.data.dataStatus),
-    valor_pagado: new FormControl('', Validators.required),
-    fecha_inicio: new FormControl('', Validators.required),
-    fecha_fin: new FormControl('', Validators.required),
-    fecha_registro: new FormControl(new Date()),
+  formAdd = new FormGroup({
+    codigo: new FormControl('', Validators.required),
+    nombre: new FormControl('', Validators.required)
   });
 
-  save() {
-    const formValues = this.formCreate.value;
+  constructor(
+    private _dialogRef: MatDialogRef<ServiceCreateComponent>,
+    private _servicesService: ServiceService,
+    private _alertService: AlertConfirmationService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+  }
 
-    // Imprime los valores en la consola
-    console.log('Valores del formulario:', formValues);
-    //this._paysService.addPay({} as Pays);
+  onSubmit() {
+    this._servicesService.add({
+      codigo: this.formAdd.value.codigo,
+      nombre: this.formAdd.value.nombre,
+    } as Service).subscribe((response) => {
+      this._alertService.showSuccessAlert('Servicio agregado con éxito', 1)
+        .then((result) => {
+          if (result.isConfirmed) { this._dialogRef.close('updated'); }
+        });
+    },
+      (error) => {
+        console.log(error);
+        this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2)
+          .then((result) => {
+          });
+      }
+    );;
+  }
+
+  cancel() {
+    this._dialogRef.close();
   }
 }

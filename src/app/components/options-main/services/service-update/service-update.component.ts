@@ -1,7 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PaysService } from '../../../../services/pays.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
+import { ServiceService } from '../../../../services/service.service';
+import { ServiceUpdate } from '../../../../interfaces/service';
 
 @Component({
   selector: 'app-service-update',
@@ -11,28 +14,42 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ServiceUpdateComponent {
 
   constructor(
-    private _paysService: PaysService,
+    private _dialogRef: MatDialogRef<ServiceUpdateComponent>,
+    private _servicesService: ServiceService,
+    private _alertService: AlertConfirmationService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  formCreate = new FormGroup({
-    id: new FormControl('', Validators.required),
-    encargado: new FormControl('', Validators.required),
-    huesped: new FormControl('', Validators.required),
-    habitacion: new FormControl('', Validators.required),
-    tipo_pago: new FormControl(this.data.dataStatus),
-    valor_pagado: new FormControl('', Validators.required),
-    fecha_inicio: new FormControl('', Validators.required),
-    fecha_fin: new FormControl('', Validators.required),
-    fecha_registro: new FormControl(new Date()),
+  formModify = new FormGroup({
+    codigo: new FormControl(this.data.dataModal.codigo, Validators.required),
+    nombre: new FormControl(this.data.dataModal.nombre, Validators.required)
   });
 
-  save() {
-    const formValues = this.formCreate.value;
+  onSubmit() {
+    this._servicesService.update({
+      id: this.data.dataModal.id,
+      codigo: this.formModify.value.codigo ?? this.data.dataModal.codigo,
+      nombre: this.formModify.value.nombre ?? this.data.dataModal.nombre,
+      administradorId: 1,
+      estadoId: this.data.dataModal.estadoId,
+      fechaModificacion: new Date().toISOString()
+    } as ServiceUpdate).subscribe((response) => {
+      this._alertService.showSuccessAlert('Administrador actualizado con éxito', 1)
+        .then((result) => {
+          if (result.isConfirmed) { this._dialogRef.close('updated'); }
+        });
+    },
+      (error) => {
+        console.log(error);
+        this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2)
+        .then((result) => {          
+        });
+      }
+    );
+  }
 
-    // Imprime los valores en la consola
-    console.log('Valores del formulario:', formValues);
-    //this._paysService.addPay({} as Pays);
+  cancel() {
+    this._dialogRef.close();
   }
 
 }

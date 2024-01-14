@@ -1,9 +1,25 @@
 export interface Service{
   id?: number;
+  codigo?: string;
   nombre?: string;
-  codigo_servicio?: string;
-  id_personal_registro?: number;
-  fecha_registro?: string;
-  fecha_modificacion?: string;
-  id_estado?: number;
+  administradorId?: number;
+  fechaRegistro?: string;
+  fechaModificacion?: string;
+  estadoId?: number;
+  habitacionServicioOfrecido ?: any[];
+}
+
+export interface ServiceCreate{
+  codigo?: string;
+  nombre?: string;
+  administradorId?: number;
+  estadoId?: number;
+}
+
+export interface ServiceUpdate{
+  id?: number;
+  codigo?: string;
+  nombre?: string;
+  administradorId?: number;
+  estadoId?: number;
 }

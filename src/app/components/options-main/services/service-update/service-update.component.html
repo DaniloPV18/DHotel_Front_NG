@@ -1,43 +1,28 @@
-<mat-card>
+<mat-card class="card">
   <div class="form-title">
-      <mat-card-title class="txt-center">Modificar Servicios</mat-card-title>
+    <mat-card-title class="txt-center">CREAR SERVICIO</mat-card-title>
   </div>
-  <form [formGroup]="formCreate" class="form-struct">
-    <div class="campo">
-      <label>Nombre </label>
-      <mat-form-field class="campos-field">
-          <input matInput placeholder="0999999999" formControlName="huesped">
-      </mat-form-field>
-    </div>
-    <div class="campo">
-      <label>Código servicio </label>
-      <mat-form-field class="campos-field">
-          <input matInput placeholder="Nombres" formControlName="huesped">
-      </mat-form-field>
-    </div>
-    <div class="campo">
-      <label>Personal que registra el servicio </label>
+  <form [formGroup]="formModify" class="form-struct">
+
+    <div class="form-flex">
+      <div class="campo">
+        <label>Codigo: </label>
         <mat-form-field class="campos-field">
-            <mat-label>Seleccionar</mat-label>
-            <mat-select formControlName="id_rol" matNativeControl required>
-                <mat-option value="Client">Administrador</mat-option>
-                <mat-option value="Administrator">Secretaria</mat-option>
-            </mat-select>
+          <input matInput placeholder="Codigo" formControlName="codigo">
         </mat-form-field>
+      </div>
+
+      <div class="campo">
+        <label>Nombre: </label>
+        <mat-form-field class="campos-field">
+          <input matInput placeholder="Nombre" formControlName="nombre">
+        </mat-form-field>
+      </div>
     </div>
 
-    <div class="campo">
-      <label>Estado</label>
-        <mat-form-field class="campos-field">
-            <mat-label>Seleccionar</mat-label>
-            <mat-select formControlName="id_rol" matNativeControl required>
-                <mat-option value="Client">Activado</mat-option>
-                <mat-option value="Administrator">Desactivado</mat-option>
-            </mat-select>
-        </mat-form-field>
+    <div class="button-struct">
+      <button mat-raised-button color="primary" [disabled]="!formModify.valid" (click)="onSubmit()">Aceptar</button>
+      <button mat-raised-button color="accent" (click)="cancel()">Cancelar</button>
     </div>
-      <div class="button-struct">
-          <button mat-raised-button color="primary" (click)="save()">Guardar</button>
-      </div>
   </form>
 </mat-card>
