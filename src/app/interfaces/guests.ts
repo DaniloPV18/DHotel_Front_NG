@@ -4,8 +4,31 @@ export interface Guests{
   nombres?: string;
   apellidos?: string;
   celular?: string;
-  id_genero?: number;
-  id_personal_registro?: number;
-  fecha_registro?: string;
-  fecha_modificacion?: string;
+  email?: string;  
+  generoId?: number;
+  administradorId?: number | null; 
+  fechaRegistro?: string;
+  fechaModificacion?: string | null; // Fecha como string o null
+  pagos?: any[]; // Reemplaza any con el tipo adecuado
+}
+
+export interface GuestsCreate{
+  cedula?: string;
+  nombres?: string;
+  apellidos?: string;
+  celular?: string;
+  email?: string;  
+  generoId?: number;
+  administradorId?: number | null; 
+}
+
+export interface GuestsUpdate{
+  id? : number;
+  cedula?: string;
+  nombres?: string;
+  apellidos?: string;
+  celular?: string;
+  email?: string;  
+  generoId?: number;
+  administradorId?: number | null;
 }

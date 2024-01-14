@@ -1,57 +1,76 @@
-<mat-card>
+<mat-card class="card">
   <div class="form-title">
-      <mat-card-title class="txt-center">{{this.data.dataText}}</mat-card-title>
+    <mat-card-title class="txt-center">CREAR HUÉSPED</mat-card-title>
   </div>
-  <form [formGroup]="formCreate" class="form-struct">
-    <div class="campo">
-      <label>Cédula </label>
-      <mat-form-field class="campos-field">
-          <input matInput placeholder="0999999999" formControlName="huesped">
-      </mat-form-field>
-    </div>
-    <div class="campo">
-      <label>Nombres </label>
-      <mat-form-field class="campos-field">
-          <input matInput placeholder="Nombres" formControlName="huesped">
-      </mat-form-field>
-    </div>
-    <div class="campo">
-      <label>Apellidos </label>
-      <mat-form-field class="campos-field">
-          <input matInput placeholder="Apellidos" formControlName="huesped">
-      </mat-form-field>
-    </div>
+  <form [formGroup]="formAdd" class="form-struct">
 
-    <div class="campo">
-      <label>Celular </label>
-      <mat-form-field class="campos-field">
-          <input matInput placeholder="Celular" formControlName="huesped">
-      </mat-form-field>
-    </div>
-
-    <div class="campo">
-      <label>Género </label>
+    <div class="form-flex">
+      <div class="campo">
+        <label>Cedula: </label>
         <mat-form-field class="campos-field">
-            <mat-label>Seleccionar</mat-label>
-            <mat-select formControlName="id_rol" matNativeControl required>
-                <mat-option value="Client">Masculino</mat-option>
-                <mat-option value="Administrator">Femenino</mat-option>
-            </mat-select>
+          <input matInput placeholder="Cedula" formControlName="cedula">
         </mat-form-field>
-    </div>
-
-    <div class="campo">
-      <label>Registrado por </label>
-        <mat-form-field class="campos-field">
-            <mat-label>Seleccionar</mat-label>
-            <mat-select formControlName="id_rol" matNativeControl required>
-                <mat-option value="Client">Administrador</mat-option>
-                <mat-option value="Administrator">Secretaria</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-      <div class="button-struct">
-          <button mat-raised-button color="primary" (click)="save()">Guardar</button>
       </div>
+
+      <div class="campo">
+        <label>Nombres: </label>
+        <mat-form-field class="campos-field">
+          <input matInput placeholder="Nombres" formControlName="nombres">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-flex">
+      <div class="campo">
+        <label>Apellidos: </label>
+        <mat-form-field class="campos-field">
+          <input matInput placeholder="Apellidos" formControlName="apellidos">
+        </mat-form-field>
+      </div>
+
+      <div class="campo">
+        <label>Celular: </label>
+        <mat-form-field class="campos-field">
+          <input matInput placeholder="Celular" formControlName="celular">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-flex">
+      <div class="campo">
+        <label>Email: </label>
+        <mat-form-field class="campos-field">
+          <input matInput placeholder="Correo Electrónico" formControlName="email">
+        </mat-form-field>
+      </div>
+
+      <div class="campo">
+        <label>Fecha Nacimiento: </label>
+        <mat-form-field class="campos-field">
+          <input matInput [matDatepicker]="pickerInicio" placeholder="Fecha Inicio" formControlName="fechaNacimiento"
+            readonly>
+          <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+          <mat-datepicker #pickerInicio></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-flex">
+      <div class="campo">
+        <label>Género: </label>
+        <mat-form-field class="campos-field">
+          <mat-label>Seleccionar</mat-label>
+          <mat-select formControlName="generoId" matNativeControl required>
+            <mat-option [value]="1">Masculino</mat-option>
+            <mat-option [value]="2">Femenino</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="button-struct">
+      <button mat-raised-button color="primary" [disabled]="!formAdd.valid" (click)="onSubmit()">Aceptar</button>
+      <button mat-raised-button color="accent" (click)="cancel()">Cancelar</button>
+    </div>
   </form>
 </mat-card>

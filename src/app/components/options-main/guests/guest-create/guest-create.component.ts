@@ -1,7 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PaysService } from '../../../../services/pays.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { GuestsService } from '../../../../services/guests.service';
+import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
+import { Guests } from '../../../../interfaces/guests';
 
 
 @Component({
@@ -11,29 +13,50 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class GuestCreateComponent {
 
-  constructor(
-    private _paysService: PaysService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
-
-  formCreate = new FormGroup({
-    id: new FormControl('', Validators.required),
-    encargado: new FormControl('', Validators.required),
-    huesped: new FormControl('', Validators.required),
-    habitacion: new FormControl('', Validators.required),
-    tipo_pago: new FormControl(this.data.dataStatus),
-    valor_pagado: new FormControl('', Validators.required),
-    fecha_inicio: new FormControl('', Validators.required),
-    fecha_fin: new FormControl('', Validators.required),
-    fecha_registro: new FormControl(new Date()),
+  formAdd = new FormGroup({
+    cedula: new FormControl('', Validators.required),
+    nombres: new FormControl('', Validators.required),
+    apellidos: new FormControl('', Validators.required),
+    celular: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    generoId: new FormControl('', Validators.required),
+    administradorId: new FormControl(1),
   });
 
-  save() {
-    const formValues = this.formCreate.value;
+  constructor(
+    private _dialogRef: MatDialogRef<GuestCreateComponent>,
+    private _guestsService: GuestsService,
+    private _alertService: AlertConfirmationService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+  }
 
-    // Imprime los valores en la consola
-    console.log('Valores del formulario:', formValues);
-    //this._paysService.addPay({} as Pays);
+  onSubmit() {
+    this._guestsService.add({
+      cedula: this.formAdd.value.cedula,
+      nombres: this.formAdd.value.nombres,
+      apellidos: this.formAdd.value.apellidos,
+      celular: this.formAdd.value.celular,
+      email: this.formAdd.value.email,
+      generoId: this.formAdd.value.generoId,
+      administradorId: 1,
+    } as Guests).subscribe((response) => {
+      this._alertService.showSuccessAlert('Huesped agregado con éxito', 1)
+        .then((result) => {
+          if (result.isConfirmed) { this._dialogRef.close('updated'); }
+        });
+    },
+      (error) => {
+        console.log(error);
+        this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2)
+          .then((result) => {
+          });
+      }
+    );;
+  }
+
+  cancel() {
+    this._dialogRef.close();
   }
 
 }
