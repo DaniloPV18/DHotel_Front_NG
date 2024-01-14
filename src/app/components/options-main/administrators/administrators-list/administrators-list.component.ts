@@ -28,9 +28,7 @@ export class AdministratorsListComponent implements AfterViewInit {
     private _dialogRef: MatDialog
   ) {
     this.dataSource = new MatTableDataSource<Administrators>();
-    this._administratorsService.getAll().subscribe(data => {
-      this.dataSource.data = data;
-    });
+    this.loadData();
     this.dataSource.paginator = this.paginator;
   }
 

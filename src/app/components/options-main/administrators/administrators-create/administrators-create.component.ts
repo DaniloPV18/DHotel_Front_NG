@@ -54,8 +54,8 @@ export class AdministratorsCreateComponent {
       (error) => {
         console.log(error);
         this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2)
-        .then((result) => {          
-        });
+          .then((result) => {
+          });
       }
     );
   }

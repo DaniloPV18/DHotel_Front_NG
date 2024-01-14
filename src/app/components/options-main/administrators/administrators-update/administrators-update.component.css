@@ -1,17 +1,18 @@
-.card{
+.card {
   padding: 1rem;
 }
-.form-struct{
+
+.form-struct {
   display: flex;
   flex-direction: column;
 }
 
-.campo{
+.campo {
   display: flex;
   flex-direction: column;
 }
 
-.button-struct{
+.button-struct {
   display: flex;
   justify-content: space-around;
 }
