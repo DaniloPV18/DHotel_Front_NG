@@ -27,6 +27,6 @@ export class AdministratorsService {
 
   changeStatus(element: Administrators, status: number): Observable<any> {
     element.estadoId = status;
-    return this._httpClient.put(`${this.baseUrl}/administrador/updateStatus`, element);
+    return this._httpClient.put(`${this.baseUrl}/administrador/update`, element);
   }
 }
