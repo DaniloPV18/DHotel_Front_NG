@@ -1,51 +1,80 @@
 <mat-card class="card">
-  <div class="form-title">
-      <mat-card-title class="txt-center">Modificar Habitación</mat-card-title>
-  </div>
-  <!-- <form [formGroup]="formModify" class="form-struct">
-
-      <div class="campo">
-        <label>Tipo de habitación </label>
-        <mat-form-field class="campos-field">
-            <mat-label>Seleccionar</mat-label>
-            <mat-select formControlName="id_rol" matNativeControl required>
-                <mat-option value="Client">Pequeña</mat-option>
-                <mat-option value="Client">Normal</mat-option>
-                <mat-option value="Administrator">Grande</mat-option>
-            </mat-select>
-        </mat-form-field>
-      </div>
-
-
-      <div class="campo">
-        <label>Número de habitación </label>
-        <mat-form-field class="campos-field">
-            <input matInput placeholder="Nro" formControlName="apellidos">
-        </mat-form-field>
+    <div class="form-title">
+        <mat-card-title class="txt-center">MODIFICAR HABITACIÓN</mat-card-title>
     </div>
 
-      <div class="campo">
-          <label>Precio </label>
-          <mat-form-field class="campos-field">
-              <input matInput placeholder="$" formControlName="nombres">
-          </mat-form-field>
-      </div>
+    <form [formGroup]="formModify" class="form-struct">
 
-      <div class="campo">
-        <label>Estado </label>
-        <mat-form-field class="campos-field">
-            <mat-label>Seleccionar</mat-label>
-            <mat-select formControlName="id_rol" matNativeControl required>
-                <mat-option value="Client">Activo</mat-option>
-                <mat-option value="Administrator">Desactivo</mat-option>
-            </mat-select>
-        </mat-form-field>
-      </div>
+        <div class="form-flex">
+            <div class="flex">
+                <div class="form-flex">
+                    <div class="campo">
+                        <label>Numero de habitación: </label>
+                        <mat-form-field class="campos-field">
+                            <input matInput placeholder="Numero" formControlName="numero">
+                        </mat-form-field>
+                    </div>
+    
+                    <div class="campo">
+                        <label>Precio: </label>
+                        <mat-form-field class="campos-field">
+                            <input matInput placeholder="Precio" formControlName="precio">
+                        </mat-form-field>
+                    </div>
+                </div>
+    
+                <div class="form-flex">
+                    <div class="campo">
+                        <label>Tipo Habitacion: </label>
+                        <mat-form-field class="campos-field">
+                            <mat-label>Seleccionar</mat-label>
+                            <mat-select formControlName="tipo_habitacion" matNativeControl required>
+                                <mat-option [value]="1">Grande</mat-option>
+                                <mat-option [value]="2">Mediana</mat-option>
+                                <mat-option [value]="2">Pequeña</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+    
+                    <div class="campo">
+                        <label>Opciones</label>
+                        <mat-form-field>
+                            <mat-label>Opciones</mat-label>
+                            <mat-select formControlName="opcionesSeleccionadas" multiple>
+                                <mat-option *ngFor="let opcion of opciones" [value]="opcion.valor">
+                                    {{opcion.vista}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+    
+                <div class="form-flex">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Seleccionar archivo" [value]="fileName" readonly>
+                        <mat-icon matSuffix>attach_file</mat-icon>
+                        <button mat-icon-button (click)="fileInput.click()" [disabled]="disabled">
+                            <mat-icon>folder_open</mat-icon>
+                        </button>
+                        <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)"
+                            accept=".jpg, .jpeg, .png">
+                    </mat-form-field>
+                </div>
+            </div>
 
-      <div class="button-struct">
-          <button mat-raised-button color="primary" [disabled]="!formModify.valid"
-              (click)="onSubmit()">Aceptar</button>
-          <button mat-raised-button color="accent" (click)="cancel()">Cancelar</button>
-      </div>
-  </form> -->
+            <img *ngIf="imageSrc && imageSrc !== ''" [src]="imageSrc" class="preview-image" />
+
+        </div>        
+
+        <div *ngIf="formModify.get('foto')!.invalid && formModify.get('foto')!.touched">
+            Debes seleccionar una imagen.
+        </div>
+
+        <div class="button-struct">
+            <button mat-raised-button color="primary" [disabled]="!formModify.valid"
+                (click)="onSubmit()">Aceptar</button>
+            <button mat-raised-button color="accent" (click)="cancel()">Cancelar</button>
+        </div>
+    </form>
+
 </mat-card>

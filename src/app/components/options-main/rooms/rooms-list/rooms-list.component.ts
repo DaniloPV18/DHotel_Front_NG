@@ -55,7 +55,7 @@ export class RoomsListComponent {
 
   seeModal(element: Rooms) {
     this._dialogRef.open(RoomUpdateComponent, {
-      width: '30%',
+      width: '60%',
       data: {
         dataModal: element
       }

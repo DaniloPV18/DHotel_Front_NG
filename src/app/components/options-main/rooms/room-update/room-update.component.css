@@ -1,18 +1,39 @@
-.card{
+.card {
   padding: 1rem;
 }
-.form-struct{
+
+.form-flex {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form-struct {
   display: flex;
   flex-direction: column;
 }
 
-.campo{
+.campo {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-
-.button-struct{
+.button-struct {
   display: flex;
-  gap: 1rem;
+  justify-content: space-around;
+}
+
+.preview-image {
+  max-width: 350px;
+  max-height: 350px;
+  margin: 5%;
+}
+
+.flex {
+  margin: auto;
+  width: 60%;
+}
+
+.example-full-width {
+  width: 80% !important;
 }

@@ -7,7 +7,7 @@ export interface Rooms{
   fechaModificacion?: string;
   estadoId?: number;
   precio?: number;
-  foto?: File | null;
+  foto?: File | string | null;
   pagos?: any[],
   habitacionServicioOfrecido?: any[]
 }
@@ -27,6 +27,6 @@ export interface RoomsUpdate{
   tipoHabitacionId?: number;
   estadoId?: number;
   precio?: number;
-  foto?: File | null;
+  foto?: File | string | null;
   habitacionServicioOfrecido?: any[]
 }
