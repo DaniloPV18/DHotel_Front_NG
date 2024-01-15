@@ -14,7 +14,7 @@ export class ServiceService {
   constructor(private _httpClient: HttpClient) { }
 
   getAll(): Observable<Service[]> {
-    return this._httpClient.get<Service[]>(`${this.baseUrl}/serviciosofrecidos`);;
+    return this._httpClient.get<Service[]>(`${this.baseUrl}/serviciosofrecidos`);
   }
 
   add(service: Service): Observable<any> {
@@ -28,5 +28,9 @@ export class ServiceService {
   changeStatus(element: Service, status: number): Observable<any> {
     element.estadoId = status;
     return this._httpClient.put(`${this.baseUrl}/serviciosofrecidos/update`, element);
+  }
+
+  getAllActives(): Observable<Service[]> {
+    return this._httpClient.get<Service[]>(`${this.baseUrl}/serviciosofrecidos/activates`);
   }
 }
