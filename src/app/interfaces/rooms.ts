@@ -22,11 +22,12 @@ export interface RoomsCreate{
 }
 
 export interface RoomsUpdate{
+  id?: number;
   numero?: number;
   administradorId?: number;
   tipoHabitacionId?: number;
   estadoId?: number;
   precio?: number;
-  foto?: File | string | null;
+  foto?: File | null;
   habitacionServicioOfrecido?: any[]
 }

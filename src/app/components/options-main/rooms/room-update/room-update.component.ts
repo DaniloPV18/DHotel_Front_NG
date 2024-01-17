@@ -4,6 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ServiceService } from '../../../../services/service.service';
 import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
 import { environment } from '../../../../../environments/environment';
+import { RoomsService } from '../../../../services/rooms.service';
+import { RoomsUpdate } from '../../../../interfaces/rooms';
 
 @Component({
   selector: 'app-room-update',
@@ -22,28 +24,43 @@ export class RoomUpdateComponent {
 
   opciones: any[] = [];
 
-  formModify = new FormGroup({
-    numero: new FormControl(this.data.dataModal.numero, Validators.required),
-    tipo_habitacion: new FormControl(this.data.dataModal.tipoHabitacionId, Validators.required),
-    precio: new FormControl(this.data.dataModal.precio, Validators.required),
-    opcionesSeleccionadas: new FormControl(this.data.dataModal.opcionesSeleccionadas, Validators.required),
-    foto: new FormControl(null, Validators.required) // Agrega esto
-  });
+  opcionesCargadas: any[] = [];
+
+  formModify !: FormGroup;
 
   constructor(
     private _dialogRef: MatDialogRef<RoomUpdateComponent>,
+    private _roomsServices: RoomsService,
     private _servicesServices: ServiceService,
     private _alertService: AlertConfirmationService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    this.inicializarFormulario();
+    this.cargarOpcionesMarcadas();
+  }
+
+  ngOnInit() {
+    this.cargarOpcionesServicios();
+  }
+
+  inicializarFormulario() {
+    this.formModify = new FormGroup({
+      numero: new FormControl(this.data.dataModal.numero, Validators.required),
+      tipo_habitacion: new FormControl(this.data.dataModal.tipoHabitacionId, Validators.required),
+      precio: new FormControl(this.data.dataModal.precio, Validators.required),
+      opcionesSeleccionadas: new FormControl([this.opcionesCargadas]),
+      foto: new FormControl(null)
+    });
+
     if (this.data.dataModal.foto) {
       this.imageSrc = `${this.baseUrl}/${this.data.dataModal.foto}`;
       this.fileName = this.data.dataModal.foto;
     }
   }
 
-  ngOnInit() {
-    this.cargarOpcionesServicios();
+  cargarOpcionesMarcadas() {
+    this.opcionesCargadas = this.data.dataModal.habitacionServicioOfrecido.map((element: any) => element.servicioOfrecidoId);
+    this.formModify.get('opcionesSeleccionadas')!.setValue(this.opcionesCargadas);
   }
 
   cargarOpcionesServicios() {
@@ -76,12 +93,29 @@ export class RoomUpdateComponent {
     }
   }
 
-  obtenerValoresSeleccionados(): void {
-    console.log(this.formModify.value.opcionesSeleccionadas); // Aquí están los valores seleccionados
-  }
-
   onSubmit() {
-
+    this._roomsServices.update({
+      id: this.data.dataModal.id,
+      numero: this.formModify.value.numero ?? this.data.dataModal.numero,
+      administradorId: 1,
+      tipoHabitacionId: this.formModify.value.tipo_habitacion ?? this.data.dataModal.tipoHabitacionId,
+      estadoId: this.data.dataModal.estadoId,
+      precio: this.formModify.value.precio ?? this.data.dataModal.precio,
+      foto: this.formModify.value.foto ?? this.data.dataModal.foto,
+      habitacionServicioOfrecido: this.formModify.value.opcionesSeleccionadas
+    } as RoomsUpdate).subscribe((response) => {
+      this._alertService.showSuccessAlert('Habitacion actualizada con éxito', 1)
+        .then((result) => {
+          if (result.isConfirmed) { this._dialogRef.close('updated'); }
+        });
+    },
+      (error) => {
+        console.log(error);
+        this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2)
+          .then((result) => {
+          });
+      }
+    );;
   }
 
   cancel() {
