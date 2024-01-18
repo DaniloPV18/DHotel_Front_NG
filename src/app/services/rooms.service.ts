@@ -17,6 +17,10 @@ export class RoomsService {
     return this._httpClient.get<Rooms[]>(`${this.baseUrl}/habitacion`);
   }
 
+  getAllActivates(): Observable<Rooms[]> {
+    return this._httpClient.get<Rooms[]>(`${this.baseUrl}/habitacion/activates`);
+  }
+
   add(rooms: RoomsCreate): Observable<any> {
     const formData = new FormData();
     formData.append('numero', rooms.numero?.toString() || '');

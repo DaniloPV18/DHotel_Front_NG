@@ -14,6 +14,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
+
 import { FormsModule } from '@angular/forms';
 
 import { CommonModule } from '@angular/common';
@@ -52,6 +54,7 @@ import { GuestUpdateComponent } from './components/options-main/guests/guest-upd
 import { ServiceConfirmationComponent } from './components/options-main/services/service-confirmation/service-confirmation.component';
 import { ServiceCreateComponent } from './components/options-main/services/service-create/service-create.component';
 import { ServiceUpdateComponent } from './components/options-main/services/service-update/service-update.component';
+import { RoomViewComponent } from './components/options-main/pay/pay-list/room-view/room-view.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +85,8 @@ import { ServiceUpdateComponent } from './components/options-main/services/servi
     GuestUpdateComponent,
     ServiceConfirmationComponent,
     ServiceCreateComponent,
-    ServiceUpdateComponent
+    ServiceUpdateComponent,
+    RoomViewComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +107,8 @@ import { ServiceUpdateComponent } from './components/options-main/services/servi
     MatDialogModule,
     MatPaginatorModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTabsModule
   ],
   providers: [
     provideClientHydration()
