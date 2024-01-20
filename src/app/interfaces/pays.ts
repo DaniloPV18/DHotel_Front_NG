@@ -1,13 +1,41 @@
 export interface Pays {
     id?: number;
-    personal_registro?: string;
-    huesped: string;
-    id_habitacion?: number;
-    id_tipo_pago?: number;
-    valor_pagado_actual?: number;
-    valor_a_pagar?: number;
-    fecha_inicio?: string;
-    fecha_fin?: string;
-    fecha_registro?: string;
-    ultima_actividad?: string;
+    habitacion?: any;
+    administrador: any;
+    huesped?: any;
+    tipoPagoId?: number;
+    valorPagado?: number;
+    valorAPagar?: number;
+    serviciosHabitacion?: any;
+    fechaRegistro?: string;
+    fechaModificacion?: string;
+    fechaInicio?: string;
+    fechaFin?: string;
+    estadoId?: number;
+    abonosReservasDTO?: any[];
+}
+
+export interface PaysCreate {
+    habitacionId?: any;
+    huespedId: any;
+    tipoPagoId?: number;
+    valorPagado?: number;
+    valorAPagar?: number;
+    serviciosHabitacion?: any;
+    fechaInicio?: string;
+    fechaFin?: string;
+    estadoId?: number;
+}
+
+export interface PaysCreate {
+    id?: number;
+    habitacionId?: any;
+    huespedId: any;
+    tipoPagoId?: number;
+    valorPagado?: number;
+    valorAPagar?: number;
+    serviciosHabitacion?: any;
+    fechaInicio?: string;
+    fechaFin?: string;
+    estadoId?: number;
 }

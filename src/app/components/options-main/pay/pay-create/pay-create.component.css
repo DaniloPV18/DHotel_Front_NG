@@ -1,11 +1,40 @@
+.card {
+  padding: 1rem;
+}
+
 .form-struct {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
 
 .campo {
   display: flex;
   flex-direction: column;
+}
+
+.button-struct {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+img {
+  max-width: 100%;
+  max-height: 80vh;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.no-photo {
+  width: 200px;
+  height: 200px;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  border: 1px solid #cccccc;
+  background-color: #f0f0f0;
 }

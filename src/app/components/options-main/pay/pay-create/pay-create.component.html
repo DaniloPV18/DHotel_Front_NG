@@ -1,56 +1,75 @@
-<mat-card>
+<mat-card class="card">
     <div class="form-title">
         <mat-card-title class="txt-center">{{this.data.dataText}}</mat-card-title>
     </div>
-    <form [formGroup]="formCreate" class="form-struct">
-        <div class="campo">
-            <label>Huesped: </label>
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Huesped" formControlName="huesped">
-            </mat-form-field>
+    <form [formGroup]="formAdd" class="form-struct" style="padding: 5%;">
+
+        <div class="form-struct">
+
+            <div class="campo">
+                <label>Buscar Huesped: </label>
+                <mat-form-field class="campos-field">
+                    <input matInput placeholder="Buscar Cédula de Huesped" (input)="filterGuests($event)">
+                </mat-form-field>
+
+                <mat-form-field class="campos-field">
+                    <input matInput placeholder="Nombres | Apellidos" value="{{this.nombreHuesped}}" readonly>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" *ngIf="!this.huespedExiste" (click)="createGuest()">Registrar
+                    Huesped</button>
+            </div>
+
+            <div class="campo">
+                <label>Habitacion: </label>
+                <mat-form-field class="campos-field">
+                    <mat-select placeholder="Habitacion" formControlName="habitacion">
+                        <mat-option *ngFor="let habitacion of habitaciones" [value]="habitacion.id">
+                            {{ habitacion.numero }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="form-struct" style="margin-top: 5%;">
+                <div class="campo">
+                    <label>Valor de la habitación: </label>
+                    <mat-form-field class="campos-field">
+                        <input matInput placeholder="Valor de la habitación" formControlName="valor_pagado" readonly>
+                    </mat-form-field>
+                </div>
+
+                <div class="campo">
+                    <label>Rango de Fechas: </label>
+                    <mat-form-field class="campos-field" appearance="fill">
+                        <mat-label>Seleccione un rango</mat-label>
+                        <mat-date-range-input [rangePicker]="picker">
+                            <input matStartDate formControlName="fecha_inicio" placeholder="Fecha Inicio" readonly>
+                            <input matEndDate formControlName="fecha_fin" placeholder="Fecha Fin" readonly>
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                    </mat-form-field>
+                </div>
+
+                <div class="campo">
+                    <label>Valor total a pagar: </label>
+                    <mat-form-field class="campos-field">
+                        <input matInput placeholder="Valor total a pagar" value="{{this.total}}" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+
         </div>
 
-        <div class="campo">
-            <label>Habitacion: </label>
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Habitacion" formControlName="habitacion">
-            </mat-form-field>
-        </div>
-
-        <div class="campo">
-            <label>Valor pagado: </label>
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Valor pagado" formControlName="valor_pagado">
-            </mat-form-field>
-        </div>
-
-        <div class="campo">
-            <label>Fecha Inicio: </label>
-            <mat-form-field class="campos-field">
-                <input matInput [matDatepicker]="pickerInicio" placeholder="Fecha Inicio" formControlName="fecha_inicio"
-                    readonly>
-                <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
-                <mat-datepicker #pickerInicio></mat-datepicker>
-            </mat-form-field>
-        </div>
-
-        <div class="campo">
-            <label>Fecha Fin: </label>
-            <mat-form-field class="campos-field">
-                <input matInput [matDatepicker]="pickerFin" placeholder="Fecha Fin" formControlName="fecha_fin"
-                    readonly>
-                <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
-                <mat-datepicker #pickerFin></mat-datepicker>
-            </mat-form-field>
+        <img *ngIf="this.foto" src="{{ this.foto }}" alt="Foto de habitación">
+        <div *ngIf="!this.foto" class="no-photo">
+            No contiene foto
         </div>
 
         <div class="button-struct">
-            <!-- <button *ngIf="this.data.dataModal.id_tipo_pago === 2" mat-raised-button color="primary"
-                (click)="seeHistoric()">
-                Ver Detalle
-            </button>
-            <button mat-raised-button color="accent" (click)="cancel()">Cerrar</button> -->
-            <button mat-raised-button color="primary" (click)="save()">Guardar</button>
+            <button mat-raised-button color="primary" (click)="onSubmit()">Registrar Pago</button>
+            <button mat-raised-button color="accent" (click)="cancel()">Cerrar</button>
         </div>
     </form>
 </mat-card>

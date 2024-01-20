@@ -13,7 +13,7 @@ import { PaysService } from '../../../../services/pays.service';
 export class PayHistoricComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  dataSource: MatTableDataSource<Pays>;
+  dataSource!: MatTableDataSource<Pays>;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -25,8 +25,8 @@ export class PayHistoricComponent implements AfterViewInit {
     private _dialogRef: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.dataSource = new MatTableDataSource(this._payService.getAllPays());
-    this.dataSource.paginator = this.paginator;
+    /* this.dataSource = new MatTableDataSource(this._payService.getAllPays()); */
+    /* this.dataSource.paginator = this.paginator; */
   }
 
   displayedColumns: string[] = ['huesped', 'encargado', 'habitacion', 'fecha_inicio', 'fecha_fin', 'fecha_registro', 'tipo_pago', 'accion'];

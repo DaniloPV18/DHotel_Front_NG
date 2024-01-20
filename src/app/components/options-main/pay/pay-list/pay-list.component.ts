@@ -40,16 +40,17 @@ export class PayListComponent implements AfterViewInit, OnInit {
     private _roomsService: RoomsService,
     private _dialogRef: MatDialog
   ) {
-    this.dataSource = new MatTableDataSource(this._payService.getAllPays());
+    this.dataSource = new MatTableDataSource<Pays>;
+    this.loadData();
     this.dataSource.paginator = this.paginator;
   }
 
-  displayedColumns: string[] = ['huesped', 'encargado', 'habitacion', 'fecha_inicio', 'fecha_fin', 'fecha_registro', 'tipo_pago', 'accion'];
+  displayedColumns: string[] = ['huesped', 'encargado', 'habitacion', 'fecha_inicio', 'fecha_fin', 'fecha_registro', 'tipo_pago', 'estado', 'accion'];
 
   seeDetails(element: Pays) {
-    var text = "DETALLES DE PAGO";
+    var text = "Detalles de Pago";
     this._dialogRef.open(PayDetailsComponent, {
-      width: '40%',
+      width: '80%',
       data: {
         dataModal: element,
         dataText: text,
@@ -62,14 +63,14 @@ export class PayListComponent implements AfterViewInit, OnInit {
     var text = "";
     switch (status) {
       case 1:
-        text = "REGISTRAR PAGO DIRECTO";
+        text = "Registrar Pago Directo";
         break;
       case 2:
-        text = "REGISTRAR RESERVA";
+        text = "Registrar Reserva";
         break;
     }
     this._dialogRef.open(PayCreateComponent, {
-      width: '25%',
+      width: '80%',
       data: {
         dataText: text,
         dataStatus: status
@@ -77,14 +78,20 @@ export class PayListComponent implements AfterViewInit, OnInit {
     });
   }
 
-  deleteElement(element: Pays) {
-    var text = "¿ESTÁ SEGURO QUE DESEA <b>ANULAR</b> EL REGISTRO?";
+  statusEntity(element: Pays) {
+    var statusValue = element.estadoId === 1 ? 3 : 1;
+    var text = "¿Está seguro que desea <b>ANULAR</b> el registro?";
+    debugger;
     this._dialogRef.open(PayConfirmationComponent, {
       width: '30%',
       data: {
         dataModal: element,
         dataText: text,
-        dataStatus: 0
+        dataStatus: statusValue
+      }
+    }).afterClosed().subscribe(result => {
+      if (result === 'updated') {
+        this.loadData();
       }
     });
   }
@@ -103,6 +110,12 @@ export class PayListComponent implements AfterViewInit, OnInit {
       data: {
         dataFoto: foto
       }
+    });
+  }
+
+  loadData() {
+    this._payService.getAll().subscribe(data => {
+      this.dataSource.data = data;
     });
   }
 }

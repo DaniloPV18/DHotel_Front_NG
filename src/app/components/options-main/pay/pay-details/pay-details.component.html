@@ -4,75 +4,94 @@
     </div>
     <form [formGroup]="formModify" class="form-struct">
 
-        <div class="campo">
-            <label>Número de Pago: </label>
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Huesped" formControlName="id" readonly>
-            </mat-form-field>
+        <div class="form-struct" style="padding: 5%;">
+            <div class="campo">
+                <label>Número de Pago: </label>
+                <mat-form-field class="campos-field">
+                    <input matInput placeholder="Huesped" formControlName="id" readonly>
+                </mat-form-field>
+            </div>
+
+            <div class="campo">
+                <label>Registrado por: </label>
+                <mat-form-field class="campos-field">
+                    <input matInput placeholder="Encargado" formControlName="encargado" readonly>
+                </mat-form-field>
+            </div>
+
+            <div class="campo">
+                <label>Huesped: </label>
+                <mat-form-field class="campos-field">
+                    <input matInput placeholder="Huesped" formControlName="huesped" readonly>
+                </mat-form-field>
+            </div>
+
+            <div class="campo">
+                <label>Habitacion: </label>
+                <mat-form-field class="campos-field">
+                    <mat-select placeholder="Habitacion" formControlName="habitacion">
+                        <mat-option *ngFor="let habitacion of habitacionesCombo" [value]="habitacion.valor">
+                            {{ habitacion.vista }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="campo">
+                <label>Tipo de Pago: </label>
+                <mat-form-field class="campos-field">
+                    <input matInput placeholder="Tipo de Pago" formControlName="tipo_pago" readonly>
+                </mat-form-field>
+            </div>
+
+            <div class="campo">
+                <label>Valor pagado: </label>
+                <mat-form-field class="campos-field">
+                    <input matInput placeholder="Valor pagado" formControlName="valor_pagado" readonly>
+                </mat-form-field>
+            </div>
+
+            <div class="campo">
+                <label>Rango de Fechas: </label>
+                <mat-form-field class="campos-field" appearance="fill">
+                    <mat-label>Seleccione un rango</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate formControlName="fecha_inicio" placeholder="Fecha Inicio" readonly>
+                        <input matEndDate formControlName="fecha_fin" placeholder="Fecha Fin" readonly>
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+            </div>
+
+            <div class="campo">
+                <label>Fecha Registro: </label>
+                <mat-form-field class="campos-field">
+                    <input matInput placeholder="Fecha Registro" formControlName="fecha_registro" readonly>
+                </mat-form-field>
+            </div>
+
+            <div class="campo">
+                <label>Estado del Pago: </label>
+                <mat-form-field class="campos-field">
+                    <input matInput placeholder="Estado" formControlName="estado" readonly>
+                </mat-form-field>
+            </div>
         </div>
 
-        <div class="campo">
-            <label>Encargado: </label>
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Encargado" formControlName="encargado" readonly>
-            </mat-form-field>
-        </div>
-
-        <div class="campo">
-            <label>Huesped: </label>
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Huesped" formControlName="huesped" readonly>
-            </mat-form-field>
-        </div>
-
-        <div class="campo">
-            <label>Habitacion: </label>
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Habitacion" formControlName="habitacion" readonly>
-            </mat-form-field>
-        </div>
-
-        <div class="campo">
-            <label>Tipo de Pago: </label>
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Tipo de Pago" formControlName="tipo_pago" readonly>
-            </mat-form-field>
-        </div>
-
-        <div class="campo">
-            <label>Valor pagado: </label>
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Valor pagado" formControlName="valor_pagado" readonly>
-            </mat-form-field>
-        </div>
-
-        <div class="campo">
-            <label>Fecha Inicio: </label>
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Fecha Inicio" formControlName="fecha_inicio" readonly>
-            </mat-form-field>
-        </div>
-
-        <div class="campo">
-            <label>Fecha Fin: </label>
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Fecha Fin" formControlName="fecha_fin" readonly>
-            </mat-form-field>
-        </div>
-
-        <div class="campo">
-            <label>Fecha Registro: </label>
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Fecha Registro" formControlName="fecha_registro" readonly>
-            </mat-form-field>
+        <img *ngIf="this.foto" src="{{ this.foto }}" alt="Foto de habitación">
+        <div *ngIf="!this.foto" class="no-photo">
+            No contiene foto
         </div>
 
         <div class="button-struct">
-            <button *ngIf="this.data.dataModal.id_tipo_pago === 2" mat-raised-button color="primary"
+            <button *ngIf="this.data.dataModal.tipoPagoId === 2" mat-raised-button color="primary"
                 (click)="seeHistoric()">
                 Ver Detalle
             </button>
+            <button *ngIf="this.data.dataModal.estadoId === 1 && this.data.dataModal.tipoPagoId === 1" mat-raised-button
+                color="primary" (click)="onSubmit()">Actualizar Pago</button>
+            <button mat-raised-button color="accent" (click)="cancel()">Cerrar</button>
         </div>
-        <button mat-raised-button color="accent" (click)="cancel()">Cerrar</button>
     </form>
 </mat-card>
