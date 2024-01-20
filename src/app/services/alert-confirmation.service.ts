@@ -13,7 +13,7 @@ export class AlertConfirmationService {
       case 1:
         return Swal.fire({
           title: '¡Éxito!',
-          text: text,
+          html: text,
           icon: 'success',
           confirmButtonText: 'Ok',
           customClass: {
@@ -23,7 +23,7 @@ export class AlertConfirmationService {
       case 2:
         return Swal.fire({
           title: 'Error!',
-          text: text,
+          html: text,
           icon: 'error',
           confirmButtonText: 'Ok',
           customClass: {

@@ -7,11 +7,15 @@ import { GuestsService } from '../../../../services/guests.service';
 import { GuestComponentsService } from '../../../../services/components/guest-create-component.service';
 import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
 import { map } from 'rxjs/operators';
+import { PaysService } from '../../../../services/pays.service';
+import { PaysCreate } from '../../../../interfaces/pays';
+import { PipesDatePipe } from '../../../../pipes/pipes-date.pipe';
 
 @Component({
   selector: 'app-pay-create',
   templateUrl: './pay-create.component.html',
-  styleUrl: './pay-create.component.css'
+  styleUrl: './pay-create.component.css',
+  providers: [PipesDatePipe]
 })
 export class PayCreateComponent implements OnInit {
 
@@ -42,12 +46,16 @@ export class PayCreateComponent implements OnInit {
 
   huesped_id!: number;
 
+  servicios_habitacion: string = "";
+
   constructor(
     private _dialogRef: MatDialogRef<PayCreateComponent>,
     private _guestComponentService: GuestComponentsService,
     private _roomsService: RoomsService,
     private _guestsService: GuestsService,
     private _alertService: AlertConfirmationService,
+    private _paysService: PaysService,
+    private _pipesDate: PipesDatePipe,
     private _cdr: ChangeDetectorRef,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -76,7 +84,30 @@ export class PayCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    
+    this._paysService.add({
+      habitacionId: this.formAdd.value.habitacion,
+      huespedId: this.huesped_id,
+      administradorId: 1,
+      tipoPagoId: 1,
+      valorPagado: this.total,
+      valorAPagar: this.total,
+      serviciosHabitacion: this.servicios_habitacion,
+      fechaInicio: this.formAdd.value.fecha_inicio,
+      fechaFin: this.formAdd.value.fecha_fin,
+      estadoId: 1
+    } as PaysCreate).subscribe((response) => {
+      this._alertService.showSuccessAlert('Pago registrado con éxito', 1)
+        .then((result) => {
+          if (result.isConfirmed) { this._dialogRef.close('updated'); }
+        });
+    },
+      (error) => {
+        console.log(error);
+        this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2)
+          .then((result) => {
+          });
+      }
+    );
   }
 
   cancel() {
@@ -114,6 +145,15 @@ export class PayCreateComponent implements OnInit {
         this.formAdd.patchValue({
           valor_pagado: habitacionSeleccionada.precio
         });
+        habitacionSeleccionada.habitacionServicioOfrecido.forEach((element: any, index: number) => {
+          if (element.servicioOfrecido && element.servicioOfrecido.nombre) {
+            this.servicios_habitacion += element.servicioOfrecido.nombre + ",";
+          }
+        });
+        if (this.servicios_habitacion.endsWith(",")) {
+          this.servicios_habitacion = this.servicios_habitacion.slice(0, -1);
+        }
+        this.getAvailable();
         this.onDateRangeChange();
         this._cdr.detectChanges();
       } else {
@@ -126,10 +166,51 @@ export class PayCreateComponent implements OnInit {
   eventDateRange() {
     this.formAdd.get('fecha_inicio')!.valueChanges.subscribe(() => {
       this.onDateRangeChange();
+      this.getAvailable();
     });
     this.formAdd.get('fecha_fin')!.valueChanges.subscribe(() => {
       this.onDateRangeChange();
+      this.getAvailable();
     });
+  }
+
+  getAvailable() {
+    const fechaInicio = this.formAdd.get('fecha_inicio')!.value;
+    const fechaFin = this.formAdd.get('fecha_fin')!.value;
+    const idHabitacion = this.formAdd.get('habitacion')!.value;
+    if (fechaInicio && fechaFin && idHabitacion) {
+      this._paysService.getAvailablePay({
+        habitacionId: idHabitacion,
+        fechaInicio: fechaInicio,
+        fechaFin: fechaFin
+      } as PaysCreate).subscribe((response) => {
+        if (response && response.length > 0) {
+          var fechasOcupadas = this.getDatesNotAvailable(response);
+          this._alertService.showSuccessAlert(`<div>Se encuentra ocupado durante ese rango de días:<br>${fechasOcupadas}</div>`, 2);
+          this.formAdd.reset({
+            fecha_inicio: null,
+            fecha_fin: null
+          });
+        }
+      },
+        (error) => {
+          console.log(error);
+          this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2);
+        }
+      );
+    }
+  }
+
+  getDatesNotAvailable(response: any): string {
+    var fechasOcupadas: string = '';
+    response.forEach((element: any) => {
+      fechasOcupadas +=
+        `<li style="text-align:left"> 
+          Fecha Inicio: ${this._pipesDate.transform(element.fechaInicio, 'days')} 
+        - Fecha Fin: ${this._pipesDate.transform(element.fechaFin, 'days')}
+        </li>`
+    });
+    return `<ol>${fechasOcupadas}</ol>`;
   }
 
   onDateRangeChange() {

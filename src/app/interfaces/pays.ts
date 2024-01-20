@@ -1,7 +1,7 @@
 export interface Pays {
     id?: number;
     habitacion?: any;
-    administrador: any;
+    administrador?: any;
     huesped?: any;
     tipoPagoId?: number;
     valorPagado?: number;
@@ -17,7 +17,8 @@ export interface Pays {
 
 export interface PaysCreate {
     habitacionId?: any;
-    huespedId: any;
+    administradorId?: any;
+    huespedId?: any;
     tipoPagoId?: number;
     valorPagado?: number;
     valorAPagar?: number;
@@ -27,10 +28,11 @@ export interface PaysCreate {
     estadoId?: number;
 }
 
-export interface PaysCreate {
+export interface PaysUpdate {
     id?: number;
     habitacionId?: any;
-    huespedId: any;
+    administradorId?: any;
+    huespedId?: any;
     tipoPagoId?: number;
     valorPagado?: number;
     valorAPagar?: number;

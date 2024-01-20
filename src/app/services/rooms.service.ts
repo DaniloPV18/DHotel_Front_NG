@@ -39,7 +39,6 @@ export class RoomsService {
   }
 
   update(rooms: RoomsUpdate): Observable<any> {
-    debugger;
     const formData = new FormData();
     formData.append('id', rooms.id?.toString() || '');
     formData.append('numero', rooms.numero?.toString() || '');
@@ -59,7 +58,6 @@ export class RoomsService {
   }
 
   changeStatus(rooms: Rooms, status: number): Observable<any> {
-    debugger;
     const formData = new FormData();
     formData.append('id', rooms.id?.toString() || '');
     formData.append('numero', rooms.numero?.toString() || '');

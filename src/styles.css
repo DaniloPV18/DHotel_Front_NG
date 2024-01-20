@@ -24,3 +24,7 @@ body{
 .custom-swal {
   width: 100%; 
 }
+
+.swal2-container .swal2-popup{
+  width: 45em;
+}

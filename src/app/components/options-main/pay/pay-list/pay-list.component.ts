@@ -75,13 +75,16 @@ export class PayListComponent implements AfterViewInit, OnInit {
         dataText: text,
         dataStatus: status
       }
+    }).afterClosed().subscribe(result => {
+      if (result === 'updated') {
+        this.loadData();
+      }
     });
   }
 
   statusEntity(element: Pays) {
     var statusValue = element.estadoId === 1 ? 3 : 1;
     var text = "¿Está seguro que desea <b>ANULAR</b> el registro?";
-    debugger;
     this._dialogRef.open(PayConfirmationComponent, {
       width: '30%',
       data: {

@@ -15,6 +15,10 @@ export class PaysService {
     return this._httpClient.get<Pays[]>(`${this.baseUrl}/pago`);
   }
 
+  getAvailablePay(pay: PaysCreate): Observable<any> {
+    return this._httpClient.post<Pays[]>(`${this.baseUrl}/pago/available`, pay);
+  }
+
   add(pay: PaysCreate) {
     return this._httpClient.post(`${this.baseUrl}/pago`, pay);
   }
@@ -24,7 +28,6 @@ export class PaysService {
   }
 
   changeStatus(pay: Pays, status: number) {
-    debugger;
     pay.estadoId = status;
     return this._httpClient.put(`${this.baseUrl}/pago/update`, pay);
   }
