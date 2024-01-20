@@ -45,7 +45,7 @@ export class PayListComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  displayedColumns: string[] = ['huesped', 'encargado', 'habitacion', 'fecha_inicio', 'fecha_fin', 'fecha_registro', 'tipo_pago', 'estado', 'accion'];
+  displayedColumns: string[] = ['id', 'huesped', 'encargado', 'habitacion', 'fecha_inicio', 'fecha_fin', 'fecha_registro', 'tipo_pago', 'estado', 'accion'];
 
   seeDetails(element: Pays) {
     var text = "Detalles de Pago";
@@ -55,6 +55,10 @@ export class PayListComponent implements AfterViewInit, OnInit {
         dataModal: element,
         dataText: text,
         dataStatus: 0
+      }
+    }).afterClosed().subscribe(result => {
+      if (result === 'updated') {
+        this.loadData();
       }
     });
   }

@@ -9,7 +9,8 @@
             <div class="campo">
                 <label>Buscar Huesped: </label>
                 <mat-form-field class="campos-field">
-                    <input matInput placeholder="Buscar Cédula de Huesped" [value]="cedulaValue" (input)="filterGuests($event)">
+                    <input matInput placeholder="Buscar Cédula de Huesped" [value]="cedulaValue"
+                        (input)="filterGuests($event)">
                 </mat-form-field>
 
                 <mat-form-field class="campos-field">
@@ -62,9 +63,11 @@
 
         </div>
 
-        <img *ngIf="this.foto" src="{{ this.foto }}" alt="Foto de habitación">
-        <div *ngIf="!this.foto" class="no-photo">
-            No contiene foto
+        <div class="image-space">
+            <img *ngIf="this.foto" src="{{ this.foto }}" alt="Foto de habitación">
+            <div *ngIf="!this.foto" class="no-photo">
+                No contiene foto
+            </div>
         </div>
 
         <div class="button-struct">

@@ -51,6 +51,16 @@
                 </mat-form-field>
             </div>
 
+            <div class="campo" *ngIf="this.existeFechaNueva">
+                <label>Fecha Anterior: </label>
+                <mat-form-field class="campos-field">
+                    <mat-date-range-input [rangePicker]="picker" disabled="">
+                        <input matStartDate value="{{this.fechaAnteriorInicio}}" placeholder="Fecha Inicio" readonly>
+                        <input matEndDate value="{{this.fechaAnteriorFin}}" placeholder="Fecha Fin" readonly>
+                    </mat-date-range-input>
+                </mat-form-field>
+            </div>
+
             <div class="campo">
                 <label>Rango de Fechas: </label>
                 <mat-form-field class="campos-field" appearance="fill">

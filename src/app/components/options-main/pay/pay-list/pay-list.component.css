@@ -214,6 +214,10 @@ img {
     margin-bottom: 1rem;
 }
 
+td {
+    font-size: 12px !important;
+}
+
 @media (min-width: 768px) {
     .options {
         flex-direction: row;
