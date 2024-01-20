@@ -6,6 +6,7 @@ import { RoomsService } from '../../../../services/rooms.service';
 import { GuestsService } from '../../../../services/guests.service';
 import { GuestComponentsService } from '../../../../services/components/guest-create-component.service';
 import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-pay-create',
@@ -36,6 +37,10 @@ export class PayCreateComponent implements OnInit {
 
   dias: number = 0;
   total: number = 0;
+
+  cedulaValue: string = '';
+
+  huesped_id!: number;
 
   constructor(
     private _dialogRef: MatDialogRef<PayCreateComponent>,
@@ -71,7 +76,7 @@ export class PayCreateComponent implements OnInit {
   }
 
   onSubmit() {
-
+    
   }
 
   cancel() {
@@ -83,6 +88,16 @@ export class PayCreateComponent implements OnInit {
       this.huespedes = data;
       this.huespedesCombo = data;
     });
+  }
+
+  loadGuestsAsync() {
+    return this._guestsService.getAll().pipe(
+      map(data => {
+        this.huespedes = data;
+        this.huespedesCombo = data;
+        return data; // Pasamos los datos sin modificar
+      })
+    );
   }
 
   loadRooms() {
@@ -141,6 +156,7 @@ export class PayCreateComponent implements OnInit {
     );
     if (this.huespedesCombo.length > 0) {
       this.nombreHuesped = this.huespedesCombo[0].nombres + " " + this.huespedesCombo[0].apellidos;
+      this.huesped_id = this.huespedesCombo[0].id;
       this.huespedExiste = true;
     } else {
       this.nombreHuesped = "No existe el huesped con ese número de cédula.";
@@ -149,20 +165,26 @@ export class PayCreateComponent implements OnInit {
     this._cdr.detectChanges();
   }
 
-  createGuest() {
-    this._guestComponentService.openCreateGuestDialog().subscribe((response) => {
-      if (response.isConfirmed) {
-        this._alertService.showSuccessAlert('Huesped agregado con éxito', 1)
-          .then((result) => {
-            if (result.isConfirmed) { this._dialogRef.close('updated'); }
-          });
+  async createGuest() {
+    this._guestComponentService.openCreateGuestDialog().subscribe(async (response) => {
+      if (response && response.isConfirmed) {
+        this.cedulaValue = response.data.cedula;
+        this.huesped_id = response.data.id;
+        try {
+          await this.loadGuestsAsync().toPromise(); // Espera a que la carga de huéspedes esté completa
+          const huespedEncontrado = this.huespedes.find(huesped =>
+            huesped.id === response.data.id
+          );
+
+          if (huespedEncontrado) {
+            this.nombreHuesped = huespedEncontrado.nombres + " " + huespedEncontrado.apellidos;
+          }
+        } catch (error) {
+          console.log(error);
+          this._alertService.showSuccessAlert('Ha ocurrido un error.', 2);
+        }
       }
-    },
-      (error) => {
-        console.log(error);
-        this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2)
-          .then((result) => {
-          });
-      });
+    });
   }
+
 }

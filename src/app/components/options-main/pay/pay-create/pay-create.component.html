@@ -9,7 +9,7 @@
             <div class="campo">
                 <label>Buscar Huesped: </label>
                 <mat-form-field class="campos-field">
-                    <input matInput placeholder="Buscar Cédula de Huesped" (input)="filterGuests($event)">
+                    <input matInput placeholder="Buscar Cédula de Huesped" [value]="cedulaValue" (input)="filterGuests($event)">
                 </mat-form-field>
 
                 <mat-form-field class="campos-field">

@@ -41,18 +41,18 @@ export class GuestCreateComponent {
       generoId: this.formAdd.value.generoId,
       administradorId: 1,
     } as Guests).subscribe((response) => {
-      this._alertService.showSuccessAlert('Huesped agregado con éxito', 1)
-        .then((result) => {
-          if (result.isConfirmed) { this._dialogRef.close('updated'); }
-        });
+      this._alertService.showSuccessAlert('Huésped agregado con éxito', 1).then((result) => {
+        if (result.isConfirmed) {
+          this._dialogRef.close({ isConfirmed: true, data: response });
+        }
+      });
     },
       (error) => {
         console.log(error);
-        this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2)
-          .then((result) => {
-          });
+        this._alertService.showSuccessAlert('Ha ocurrido un error.', 2).then(() => {
+        });
       }
-    );;
+    );
   }
 
   cancel() {
