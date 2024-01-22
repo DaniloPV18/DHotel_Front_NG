@@ -7,15 +7,11 @@
                 <h2>S E S I Ó N</h2>
             </div>
             <mat-form-field>
-                <input matInput placeholder="Email" name="email" required formControlName="email">
+                <input matInput type="text" placeholder="Cédula" name="cedula" required formControlName="cedula">
             </mat-form-field>
-            <div *ngIf="(loginFormGroupControl['email'].touched || submitted) && loginFormGroupControl['email'].errors?.['required']"
+            <div *ngIf="(loginFormGroupControl['cedula'].touched || submitted) && loginFormGroupControl['cedula'].errors?.['required']"
                 class="error">
-                <mat-error>El correo electrónico es requerido</mat-error>
-            </div>
-            <div *ngIf="loginFormGroupControl['email'].touched && loginFormGroupControl['email'].errors?.['email']"
-                class="error">
-                <mat-error>Ingrese un correo electrónico valido</mat-error>
+                <mat-error>La contraseña es requerida</mat-error>
             </div>
             <mat-form-field>
                 <input matInput type="password" placeholder="Contraseña" name="contrasena" required

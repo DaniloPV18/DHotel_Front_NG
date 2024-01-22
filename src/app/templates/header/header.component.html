@@ -1,3 +1,6 @@
 <header>
     Logo
+    <button mat-raised-button color="accent" *ngIf="isLoggedIn" (click)="logout()">
+        Cerrar Sesión
+    </button>
 </header>
