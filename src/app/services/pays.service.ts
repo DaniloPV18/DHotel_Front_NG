@@ -27,8 +27,7 @@ export class PaysService {
     return this._httpClient.put(`${this.baseUrl}/pago/update`, pay);
   }
 
-  changeStatus(pay: Pays, status: number) {
-    pay.estadoId = status;
-    return this._httpClient.put(`${this.baseUrl}/pago/update`, pay);
+  changeStatus(pay: Pays) {
+    return this._httpClient.delete(`${this.baseUrl}/pago/delete/${pay.id}`);
   }
 }

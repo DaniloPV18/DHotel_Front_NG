@@ -57,6 +57,7 @@ import { ServiceUpdateComponent } from './components/options-main/services/servi
 import { RoomViewComponent } from './components/options-main/pay/pay-list/room-view/room-view.component';
 
 import { PipesDatePipe } from './pipes/pipes-date.pipe';
+import { ReserveCreateComponent } from './components/options-main/pay/reserve-create/reserve-create.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { PipesDatePipe } from './pipes/pipes-date.pipe';
     ServiceCreateComponent,
     ServiceUpdateComponent,
     RoomViewComponent,
-    PipesDatePipe
+    PipesDatePipe,
+    ReserveCreateComponent
   ],
   exports: [
     PipesDatePipe

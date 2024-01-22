@@ -10,6 +10,8 @@ import { map } from 'rxjs/operators';
 import { PaysService } from '../../../../services/pays.service';
 import { PaysCreate } from '../../../../interfaces/pays';
 import { PipesDatePipe } from '../../../../pipes/pipes-date.pipe';
+import { ReservesService } from '../../../../services/reserves.service';
+import { ReserveCreate } from '../../../../interfaces/reserve';
 
 @Component({
   selector: 'app-pay-create',
@@ -48,10 +50,13 @@ export class PayCreateComponent implements OnInit {
 
   servicios_habitacion: string = "";
 
+  abono: number = 0;
+
   constructor(
     private _dialogRef: MatDialogRef<PayCreateComponent>,
     private _guestComponentService: GuestComponentsService,
     private _roomsService: RoomsService,
+    private _reservesService: ReservesService,
     private _guestsService: GuestsService,
     private _alertService: AlertConfirmationService,
     private _paysService: PaysService,
@@ -84,30 +89,68 @@ export class PayCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    this._paysService.add({
-      habitacionId: this.formAdd.value.habitacion,
-      huespedId: this.huesped_id,
-      administradorId: 1,
-      tipoPagoId: 1,
-      valorPagado: this.total,
-      valorAPagar: this.total,
-      serviciosHabitacion: this.servicios_habitacion,
-      fechaInicio: this.formAdd.value.fecha_inicio,
-      fechaFin: this.formAdd.value.fecha_fin,
-      estadoId: 1
-    } as PaysCreate).subscribe((response) => {
-      this._alertService.showSuccessAlert('Pago registrado con éxito', 1)
-        .then((result) => {
-          if (result.isConfirmed) { this._dialogRef.close('updated'); }
+    var pay = this.generatePayEntity();
+    this._paysService.add(pay).subscribe((response: any) => {
+      if (this.data.dataStatus == 2) {
+        this._reservesService.add({
+          administradorId: 1,
+          valorPagado: this.abono,
+          pagoId: response.id
+        } as ReserveCreate).subscribe((r) => {
+          this._alertService.showSuccessAlert('Reserva registrada con éxito', 1).then((result) => {
+            if (result.isConfirmed) {
+              this._dialogRef.close('updated');
+            }
+          });
+        },
+          (e) => {
+            console.log(e);
+            this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2);
+          });
+      } else {
+        this._alertService.showSuccessAlert('Pago registrado con éxito', 1).then((result) => {
+          if (result.isConfirmed) {
+            this._dialogRef.close('updated');
+          }
         });
+      }
     },
       (error) => {
         console.log(error);
-        this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2)
-          .then((result) => {
-          });
+        this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2);
       }
     );
+  }
+
+  generatePayEntity(): PaysCreate {
+    switch (this.data.dataStatus) {
+      case 1:
+        return {
+          habitacionId: this.formAdd.value.habitacion,
+          huespedId: this.huesped_id,
+          administradorId: 1,
+          tipoPagoId: this.data.dataStatus,
+          valorPagado: this.total,
+          valorAPagar: this.total,
+          serviciosHabitacion: this.servicios_habitacion,
+          fechaInicio: this.formAdd.value.fecha_inicio,
+          fechaFin: this.formAdd.value.fecha_fin
+        } as PaysCreate;
+      case 2:
+        return {
+          habitacionId: this.formAdd.value.habitacion,
+          huespedId: this.huesped_id,
+          administradorId: 1,
+          tipoPagoId: this.data.dataStatus,
+          valorPagado: this.abono,
+          valorAPagar: this.total,
+          serviciosHabitacion: this.servicios_habitacion,
+          fechaInicio: this.formAdd.value.fecha_inicio,
+          fechaFin: this.formAdd.value.fecha_fin
+        } as PaysCreate;
+      default:
+        return {};
+    }
   }
 
   cancel() {
@@ -135,6 +178,10 @@ export class PayCreateComponent implements OnInit {
     this._roomsService.getAllActivates().subscribe(data => {
       this.habitaciones = data;
     });
+  }
+
+  getAbono(inputRef: HTMLInputElement): void {
+    this.abono = parseFloat(inputRef.value);
   }
 
   eventRoomsImage() {
@@ -187,7 +234,7 @@ export class PayCreateComponent implements OnInit {
         if (response && response.length > 0) {
           var fechasOcupadas = this.getDatesNotAvailable(response);
           this._alertService.showSuccessAlert(`<div>Se encuentra ocupado durante ese rango de días:<br>${fechasOcupadas}</div>`, 2);
-          this.formAdd.reset({
+          this.formAdd.patchValue({
             fecha_inicio: null,
             fecha_fin: null
           });

@@ -54,7 +54,7 @@ export class PayListComponent implements AfterViewInit, OnInit {
       data: {
         dataModal: element,
         dataText: text,
-        dataStatus: 0
+        dataStatus: element.tipoPagoId
       }
     }).afterClosed().subscribe(result => {
       if (result === 'updated') {
@@ -92,7 +92,7 @@ export class PayListComponent implements AfterViewInit, OnInit {
     this._dialogRef.open(PayConfirmationComponent, {
       width: '30%',
       data: {
-        dataModal: element,
+        dataPayModal: element,
         dataText: text,
         dataStatus: statusValue
       }

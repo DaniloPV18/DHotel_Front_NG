@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PaysService } from '../../../../services/pays.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PayHistoricComponent } from '../pay-historic/pay-historic.component';
 import { PipesDatePipe } from '../../../../pipes/pipes-date.pipe';
 import { environment } from '../../../../../environments/environment';
@@ -48,6 +48,10 @@ export class PayDetailsComponent implements OnInit {
 
   servicios_habitacion!: any;
 
+  valorPendiente: number = 0;
+
+  textoModal_1: string = 'Valor pagado:';
+
   constructor(
     private _paysService: PaysService,
     private _roomsService: RoomsService,
@@ -58,7 +62,7 @@ export class PayDetailsComponent implements OnInit {
     private _dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.nombreHuesped = this.data.dataModal.huesped.nombres + " " + this.data.dataModal.huesped.nombres;
+    this.nombreHuesped = this.data.dataModal.huesped.nombres + " " + this.data.dataModal.huesped.apellidos;
     this.nombreAdministrador = this.data.dataModal.administrador.nombres + " " + this.data.dataModal.administrador.apellidos;
     this.fechaInicioPipe = this._pipesDate.transform(this.data.dataModal.fechaInicio, 'days');
     this.fechaFinPipe = this._pipesDate.transform(this.data.dataModal.fechaFin, 'days');
@@ -91,13 +95,24 @@ export class PayDetailsComponent implements OnInit {
   }
 
   private startFormModify() {
+    this.valorPendiente = 0;
+    var valorPagado: number = 0;
+    if (this.data.dataStatus == 1) {
+      valorPagado = this.data.dataModal.valorPagado
+    } else if (this.data.dataStatus == 2) {
+      valorPagado = this.data.dataModal.valorAPagar
+      if (this.data.dataModal.valorAPagar != this.data.dataModal.valorPagado) {
+        this.textoModal_1 = 'Total a pagar: ';
+        this.valorPendiente = this.data.dataModal.valorAPagar - this.data.dataModal.valorPagado;
+      }
+    }
     this.formModify = new FormGroup({
       id: new FormControl(this.data.dataModal.id, Validators.required),
       encargado: new FormControl(this.nombreAdministrador, Validators.required),
       huesped: new FormControl(this.nombreHuesped, Validators.required),
       habitacion: new FormControl(this.data.dataModal.habitacion.id, Validators.required),
       tipo_pago: new FormControl(this.data.dataModal.tipoPagoId === 1 ? "Directo" : "Reserva"),
-      valor_pagado: new FormControl(this.data.dataModal.valorPagado, Validators.required),
+      valor_pagado: new FormControl(valorPagado, Validators.required),
       fecha_inicio: new FormControl(this.data.dataModal.fechaInicio, Validators.required),
       fecha_fin: new FormControl(this.data.dataModal.fechaFin, Validators.required),
       fecha_registro: new FormControl(this.fechaRegistroPipe, Validators.required),

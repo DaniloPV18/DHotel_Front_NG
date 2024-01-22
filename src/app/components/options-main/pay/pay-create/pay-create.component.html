@@ -59,6 +59,13 @@
                         <input matInput placeholder="Valor total a pagar" value="{{this.total}}" readonly>
                     </mat-form-field>
                 </div>
+
+                <div class="campo" *ngIf="this.data.dataStatus == 2">
+                    <label>Valor a <b>abonar:</b> </label>
+                    <mat-form-field class="campos-field">
+                        <input type="number" matInput placeholder="Valor total a Abonar" #inputValor (input)="getAbono(inputValor)">
+                    </mat-form-field>
+                </div>
             </div>
 
         </div>

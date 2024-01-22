@@ -45,9 +45,16 @@
             </div>
 
             <div class="campo">
-                <label>Valor pagado: </label>
+                <label>{{this.textoModal_1}}</label>
                 <mat-form-field class="campos-field">
                     <input matInput placeholder="Valor pagado" formControlName="valor_pagado" readonly>
+                </mat-form-field>
+            </div>
+
+            <div class="campo" *ngIf="this.valorPendiente != 0">
+                <label>Valor Pendiente: </label>
+                <mat-form-field class="campos-field">
+                    <input matInput placeholder="Valor pendiente" value="{{this.valorPendiente}}" readonly>
                 </mat-form-field>
             </div>
 

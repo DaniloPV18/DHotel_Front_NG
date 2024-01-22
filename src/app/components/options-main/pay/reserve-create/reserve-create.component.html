@@ -1,0 +1,65 @@
+<mat-card class="card">
+    <div class="form-title">
+        <mat-card-title class="txt-center">Registrar abono</mat-card-title>
+    </div>
+    <form [formGroup]="formAdd" style="display: flex; flex-direction: column;">
+
+        <label>Detalles del pago: </label>
+
+        <div class="form-struct">
+            <div class="campo">
+                <mat-form-field class="campos-field">
+                    <mat-label>Nùmero de pago:</mat-label>
+                    <input matInput placeholder="Nùmero de pago" value="{{this.data.dataPayModal.id}}">
+                </mat-form-field>
+            </div>
+
+            <div class="campo">
+                <mat-form-field class="campos-field">
+                    <mat-label>Número de la habitación:</mat-label>
+                    <input matInput placeholder="Número de la habitación"
+                        value="{{this.data.dataPayModal.habitacion.id}}">
+                </mat-form-field>
+            </div>
+
+            <div class="campo">
+                <mat-form-field class="campos-field">
+                    <mat-label>Valor de la habitación:</mat-label>
+                    <input matInput placeholder="Valor de la habitación"
+                        value="{{this.data.dataPayModal.habitacion.precio}}">
+                </mat-form-field>
+            </div>
+
+            <div class="campo">
+                <mat-form-field class="campos-field">
+                    <mat-label>Valor total a pagar:</mat-label>
+                    <input matInput placeholder="Valor total a pagar" value="{{this.data.dataPayModal.valorAPagar}}">
+                </mat-form-field>
+            </div>
+
+            <div class="campo">
+                <mat-form-field class="campos-field">
+                    <mat-label>Valor pendiente:</mat-label>
+                    <input matInput placeholder="Valor pendiente" 
+                    value="{{this.valor_pendiente}}">
+                </mat-form-field>
+            </div>
+
+        </div>
+
+        <div class="campo">
+            <label>Valor a <b>abonar:</b> </label>
+            <mat-form-field class="campos-field">
+                <input type="number" matInput placeholder="Valor total a Abonar" [max]="this.valor_pendiente"
+                    formControlName="valor_abono" (input)="getAbono($event)">
+            </mat-form-field>
+        </div>
+
+
+        <div class="button-struct">
+            <button mat-raised-button color="primary" (click)="onSubmit()">Registrar Pago</button>
+            <button mat-raised-button color="accent" (click)="cancel()">Cerrar</button>
+        </div>
+    </form>
+
+</mat-card>
