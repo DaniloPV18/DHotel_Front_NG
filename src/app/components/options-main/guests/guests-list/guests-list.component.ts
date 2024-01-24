@@ -31,7 +31,7 @@ export class GuestsListComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'email', 'celular', 'genero', 'fecha_registro', 'fecha_modificacion', 'accion'];
+  displayedColumns: string[] = ['id', 'cedula', 'nombres', 'apellidos', 'email', 'celular', 'genero', 'fecha_registro', 'fecha_modificacion', 'accion'];
 
   create() {
     var text = " ";

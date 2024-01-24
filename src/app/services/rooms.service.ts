@@ -67,7 +67,7 @@ export class RoomsService {
     formData.append('estadoId', status?.toString() || '');
     if (rooms.habitacionServicioOfrecido) {
       rooms.habitacionServicioOfrecido.forEach((servicioId, index) => {
-        formData.append(`habitacionServicioOfrecido[${index}]`, servicioId.toString())
+        formData.append(`habitacionServicioOfrecido[${index}]`, servicioId.servicioOfrecidoId)
       });
     }
     if (rooms.foto instanceof File) {

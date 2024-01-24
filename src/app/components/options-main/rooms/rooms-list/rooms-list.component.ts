@@ -24,8 +24,8 @@ export class RoomsListComponent {
   dataSource: MatTableDataSource<Rooms>;
 
   ngAfterViewInit() {
-     this.dataSource.paginator = this.paginator;
-     this.paginator.pageSize = 8;
+    this.dataSource.paginator = this.paginator;
+    this.paginator.pageSize = 8;
   }
 
   constructor(
@@ -37,7 +37,7 @@ export class RoomsListComponent {
     this.dataSource.paginator = this.paginator;
   }
 
-  displayedColumns: string[] = ['numero', 'tipo_habitacion', 'fecha_registro', 'fecha_modificacion', 'precio', 'accion'];
+  displayedColumns: string[] = ['id', 'numero', 'tipo_habitacion', 'fecha_registro', 'fecha_modificacion', 'precio', 'accion'];
 
   create() {
     var text = "REGISTRAR NUEVA HABITACION";

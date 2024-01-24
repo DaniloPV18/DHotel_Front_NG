@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, timer } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { AlertConfirmationService } from '../../../services/alert-confirmation.service';
 
 @Injectable({
@@ -12,6 +12,7 @@ export class AuthService {
   private idAdmin = new BehaviorSubject<number | null>(null);
   private nombres = new BehaviorSubject<string | null>(null);
   private apellidos = new BehaviorSubject<string | null>(null);
+  private tokenExpirationTimer: any;
 
   constructor(
     private _router: Router,
@@ -22,6 +23,7 @@ export class AuthService {
     // Inicializa los nombres y apellidos desde el token si el usuario está autenticado
     if (this.isAuthenticatedSource.value) {
       this.initNamesAndLastnames();
+      this.initTokenExpirationTimer();
     }
   }
 
@@ -37,8 +39,29 @@ export class AuthService {
         this.idAdmin.next(null);
         this.nombres.next(null);
         this.apellidos.next(null);
+        this.clearTokenExpirationTimer();
       }
       this.isAuthenticatedSource.next(!!token);
+    }
+  }
+
+  private initTokenExpirationTimer() {
+    const token = this.getToken();
+    if (token) {
+      const tokenData = JSON.parse(atob(token.split('.')[1]));
+      const expirationTime = tokenData.exp * 1000 - Date.now();
+      this.clearTokenExpirationTimer();
+      this.tokenExpirationTimer = timer(expirationTime).pipe(take(1)).subscribe(() => {
+        this.setToken(null);
+        this.isAuthenticatedSource.next(!!this.getToken());
+        this._router.navigate(['']);
+      });
+    }
+  }
+
+  private clearTokenExpirationTimer() {
+    if (this.tokenExpirationTimer) {
+      this.tokenExpirationTimer.unsubscribe();
     }
   }
 
@@ -58,11 +81,16 @@ export class AuthService {
     if (!token) {
       return true; // El token no existe, considerarlo como expirado
     }
-
     const tokenData = JSON.parse(atob(token.split('.')[1])); // Decodificar el payload del token
-    const tokenExpiration = tokenData.exp * 1000; // Convertir la expiración a milisegundos
-
-    return Date.now() > tokenExpiration; // Verificar si la fecha actual es posterior a la expiración
+    const tokenExpiration = tokenData.exp * 1000;
+    // Convertir la expiración a milisegundos
+    if (Date.now() < tokenExpiration) {
+      return false;
+    } else {
+      localStorage.removeItem('token');
+      this.isAuthenticatedSource.next(false)
+      return true;
+    }
   }
 
   // Método para inicializar nombres y apellidos desde el token
@@ -78,9 +106,20 @@ export class AuthService {
   }
 
   logout(): void {
+    this._alertService.showSuccessAlert('Usted ha cerrado la sesión.!', 1).then((r) => {
+      this.setToken(null);
+      this.isAuthenticatedSource.next(!!this.getToken());
+      this._router.navigate(['']);
+    });
+  }
+
+  isJwtTokenValid(token: string): boolean {
+    const jwtRegex = /^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.[A-Za-z0-9-_.+/=]*$/;
+    return jwtRegex.test(token);
+  }
+
+  endSesion(): void {
     this.setToken(null);
-    this.isAuthenticatedSource.next(!!this.getToken());
-    this._router.navigate(['']);
   }
 
   getIdAdmin(): Observable<number | null> {

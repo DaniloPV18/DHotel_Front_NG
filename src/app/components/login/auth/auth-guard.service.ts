@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AlertConfirmationService } from '../../../services/alert-confirmation.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +16,16 @@ export class AuthGuard implements CanActivate {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private _alertService: AlertConfirmationService
   ) { }
 
   canActivate(): Observable<boolean> {
     return this.authService.isAuthenticated.pipe(
       map(isAuthenticated => {
         if (isAuthenticated) {
-          // Token válido, obtener nombres y apellidos del payload
           const token = this.authService.getToken();
-          if (token) {
+          if (token && !this.authService.isTokenExpired(token) && this.authService.isJwtTokenValid(token)) {
             const tokenParts = token.split('.');
             if (tokenParts.length === 3) {
               const encodedPayload = tokenParts[1];
@@ -34,10 +35,12 @@ export class AuthGuard implements CanActivate {
             }
             return true;
           } else {
+            this._alertService.showSuccessAlert('Su sesión ha finalizado!', 2);
             this.router.navigate(['']);
             return false;
           }
         } else {
+          this._alertService.showSuccessAlert('No se encuentra autenticado!', 2);
           this.router.navigate(['']);
           return false;
         }

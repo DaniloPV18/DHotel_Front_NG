@@ -32,7 +32,7 @@ export class AdministratorsListComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'email', 'ultima_actividad', 'genero', 'rol', 'accion'];
+  displayedColumns: string[] = ['id', 'cedula', 'nombres', 'apellidos', 'email', 'ultima_actividad', 'genero', 'rol', 'accion'];
 
   create() {
     var text = " ";
@@ -42,7 +42,7 @@ export class AdministratorsListComponent implements AfterViewInit {
         dataText: text
       }
     }).afterClosed().subscribe(result => {
-      if (result === 'updated') {        
+      if (result === 'updated') {
         this.loadData();
       }
     });

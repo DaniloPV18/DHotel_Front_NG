@@ -33,7 +33,7 @@ export class ServicesListComponent {
     this.dataSource.paginator = this.paginator;
   }
 
-  displayedColumns: string[] = ['codigo','nombre', 'fecha_registro', 'fecha_modificacion', 'estado', 'accion'];
+  displayedColumns: string[] = ['id', 'codigo', 'nombre', 'fecha_registro', 'fecha_modificacion', 'estado', 'accion'];
 
   create() {
     var text = " ";
@@ -43,7 +43,7 @@ export class ServicesListComponent {
         dataText: text
       }
     }).afterClosed().subscribe(result => {
-      if (result === 'updated') {        
+      if (result === 'updated') {
         this.loadData();
       }
     });

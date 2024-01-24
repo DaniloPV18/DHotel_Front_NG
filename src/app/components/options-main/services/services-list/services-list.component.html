@@ -8,6 +8,10 @@
 
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> Nro. </th>
+                <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
+            </ng-container>
             <!-- Position Column -->
             <ng-container matColumnDef="codigo">
                 <th mat-header-cell *matHeaderCellDef> Codigo </th>
@@ -34,8 +38,8 @@
 
             <ng-container matColumnDef="estado">
                 <th mat-header-cell *matHeaderCellDef> Estado </th>
-                <td mat-cell *matCellDef="let element"> 
-                    {{ element.estadoId === 1 ? 'Activado' : 'Desactivado' }}    
+                <td mat-cell *matCellDef="let element">
+                    {{ element.estadoId === 1 ? 'Activado' : 'Desactivado' }}
                 </td>
             </ng-container>
 
