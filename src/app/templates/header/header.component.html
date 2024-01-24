@@ -1,5 +1,8 @@
 <header>
     Logo
+    <p *ngIf="isLoggedIn">
+        ¡Hola, {{ nombres }} {{ apellidos }}!
+    </p>
     <button mat-raised-button color="accent" *ngIf="isLoggedIn" (click)="logout()">
         Cerrar Sesión
     </button>

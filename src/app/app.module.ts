@@ -62,6 +62,8 @@ import { ReserveCreateComponent } from './components/options-main/pay/reserve-cr
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './components/login/auth/auth-interceptor';
 
+import { IdAdminService } from './services/components/id-admin.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -127,7 +129,8 @@ import { AuthInterceptor } from './components/login/auth/auth-interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor, // Usa tu interceptor personalizado aquí
       multi: true
-    }
+    },
+    IdAdminService
   ],
   bootstrap: [AppComponent]
 })

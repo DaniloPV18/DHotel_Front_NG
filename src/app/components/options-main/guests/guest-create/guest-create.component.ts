@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { GuestsService } from '../../../../services/guests.service';
 import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
 import { Guests } from '../../../../interfaces/guests';
+import { IdAdminService } from '../../../../services/components/id-admin.service';
 
 
 @Component({
@@ -13,6 +14,8 @@ import { Guests } from '../../../../interfaces/guests';
 })
 export class GuestCreateComponent {
 
+  idAdmin !: number | null;
+
   formAdd = new FormGroup({
     cedula: new FormControl('', Validators.required),
     nombres: new FormControl('', Validators.required),
@@ -20,15 +23,17 @@ export class GuestCreateComponent {
     celular: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     generoId: new FormControl('', Validators.required),
-    administradorId: new FormControl(1),
+    administradorId: new FormControl(this.idAdmin),
   });
 
   constructor(
     private _dialogRef: MatDialogRef<GuestCreateComponent>,
     private _guestsService: GuestsService,
     private _alertService: AlertConfirmationService,
+    private _idAdminService: IdAdminService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    this.idAdmin = this._idAdminService.getIdAdmin();
   }
 
   onSubmit() {
@@ -39,7 +44,7 @@ export class GuestCreateComponent {
       celular: this.formAdd.value.celular,
       email: this.formAdd.value.email,
       generoId: this.formAdd.value.generoId,
-      administradorId: 1,
+      administradorId: this.idAdmin,
     } as Guests).subscribe((response) => {
       this._alertService.showSuccessAlert('Huésped agregado con éxito', 1).then((result) => {
         if (result.isConfirmed) {

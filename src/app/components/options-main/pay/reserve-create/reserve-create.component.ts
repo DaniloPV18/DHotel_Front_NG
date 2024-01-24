@@ -5,6 +5,7 @@ import { ReservesService } from '../../../../services/reserves.service';
 import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
 import { PipesDatePipe } from '../../../../pipes/pipes-date.pipe';
 import { ReserveCreate } from '../../../../interfaces/reserve';
+import { IdAdminService } from '../../../../services/components/id-admin.service';
 
 @Component({
   selector: 'app-reserve-create',
@@ -22,14 +23,17 @@ export class ReserveCreateComponent {
 
   valor_pendiente !: number;
 
+  idAdmin !: number | null;
+
   constructor(
     private _dialogRef: MatDialogRef<ReserveCreateComponent>,
     private _reservesService: ReservesService,
     private _alertService: AlertConfirmationService,
+    private _idAdminService: IdAdminService,
     private _pipesDate: PipesDatePipe,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-
+    this.idAdmin = this._idAdminService.getIdAdmin();
   }
 
   ngOnInit() {
@@ -54,7 +58,7 @@ export class ReserveCreateComponent {
 
   onSubmit() {
     this._reservesService.add({
-      administradorId: 1,
+      administradorId: this.idAdmin,
       pagoId: this.data.dataPayModal.id,
       valorPagado: this.abono
     } as ReserveCreate).subscribe((r) => {
