@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AdministratorsUpdate } from '../../../../interfaces/administrators';
 import { AdministratorsService } from '../../../../services/administrators.service';
 import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
+import { IdAdminService } from '../../../../services/components/id-admin.service';
 
 @Component({
   selector: 'app-administrators-update',
@@ -13,12 +14,17 @@ import { AlertConfirmationService } from '../../../../services/alert-confirmatio
 
 export class AdministratorsUpdateComponent {
 
+  idAdmin !: number | null;
+
   constructor(
     private _dialogRef: MatDialogRef<AdministratorsUpdateComponent>,
     private _administratorsService: AdministratorsService,
     private _alertService: AlertConfirmationService,
+    private _idAdminService: IdAdminService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {
+    this.idAdmin = this._idAdminService.getIdAdmin();
+  }
 
   formModify = new FormGroup({
     cedula: new FormControl(this.data.dataModal.cedula, Validators.required),
@@ -30,7 +36,7 @@ export class AdministratorsUpdateComponent {
     pwd: new FormControl(this.data.dataModal.pwd),
     fechaNacimiento: new FormControl(new Date()),
     rolId: new FormControl(this.data.dataModal.rolId),
-    administradorId: new FormControl(1),
+    administradorId: new FormControl(this.idAdmin),
     estadoId: new FormControl(this.data.dataModal.estadoId)
   });
 
@@ -45,7 +51,7 @@ export class AdministratorsUpdateComponent {
       generoId: this.formModify.value.generoId ?? this.data.dataModal.generoId,
       fechaNacimiento: this.formModify.value.fechaNacimiento ?? this.data.dataModal.fechaNacimiento,
       rolId: this.formModify.value.rolId ?? this.data.dataModal.rolId,
-      administradorId: this.formModify.value.administradorId ?? this.data.dataModal.administradorId,
+      administradorId: this.idAdmin ?? this.data.dataModal.administradorId,
       estadoId: this.formModify.value.estadoId ?? this.data.dataModal.estadoId,
       fechaModificacion: new Date().toISOString()
     } as AdministratorsUpdate).subscribe((response) => {

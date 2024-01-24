@@ -4,6 +4,7 @@ import { AdministratorsService } from '../../../../services/administrators.servi
 import { AdministratorsCreate } from '../../../../interfaces/administrators';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
+import { IdAdminService } from '../../../../services/components/id-admin.service';
 
 @Component({
   selector: 'app-administrators-create',
@@ -11,6 +12,8 @@ import { AlertConfirmationService } from '../../../../services/alert-confirmatio
   styleUrl: './administrators-create.component.css'
 })
 export class AdministratorsCreateComponent {
+
+  idAdmin !: number | null;
 
   formAdd = new FormGroup({
     cedula: new FormControl('', Validators.required),
@@ -22,15 +25,17 @@ export class AdministratorsCreateComponent {
     rolId: new FormControl('', Validators.required),
     pwd: new FormControl(''),
     fechaNacimiento: new FormControl('', Validators.required),
-    administradorId: new FormControl('')
+    administradorId: new FormControl(this.idAdmin)
   });
 
   constructor(
     private _dialogRef: MatDialogRef<AdministratorsCreateComponent>,
     private _administratorsService: AdministratorsService,
     private _alertService: AlertConfirmationService,
+    private _idAdminService: IdAdminService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    this.idAdmin = this._idAdminService.getIdAdmin();
   }
 
   onSubmit() {
@@ -42,9 +47,8 @@ export class AdministratorsCreateComponent {
       email: this.formAdd.value.email,
       generoId: this.formAdd.value.generoId,
       rolId: this.formAdd.value.rolId,
-      pwd: this.formAdd.value.cedula,
       fechaNacimiento: this.formAdd.value.fechaNacimiento,
-      administradorId: 1
+      administradorId: this.idAdmin
     } as AdministratorsCreate).subscribe((response) => {
       this._alertService.showSuccessAlert('Administrador agregado con éxito', 1)
         .then((result) => {

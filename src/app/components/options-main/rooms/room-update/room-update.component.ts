@@ -6,6 +6,7 @@ import { AlertConfirmationService } from '../../../../services/alert-confirmatio
 import { environment } from '../../../../../environments/environment';
 import { RoomsService } from '../../../../services/rooms.service';
 import { RoomsUpdate } from '../../../../interfaces/rooms';
+import { IdAdminService } from '../../../../services/components/id-admin.service';
 
 @Component({
   selector: 'app-room-update',
@@ -28,13 +29,17 @@ export class RoomUpdateComponent {
 
   formModify !: FormGroup;
 
+  idAdmin !: number | null;
+
   constructor(
     private _dialogRef: MatDialogRef<RoomUpdateComponent>,
     private _roomsServices: RoomsService,
     private _servicesServices: ServiceService,
     private _alertService: AlertConfirmationService,
+    private _idAdminService: IdAdminService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    this.idAdmin = this._idAdminService.getIdAdmin();
     this.inicializarFormulario();
     this.cargarOpcionesMarcadas();
   }
@@ -97,7 +102,7 @@ export class RoomUpdateComponent {
     this._roomsServices.update({
       id: this.data.dataModal.id,
       numero: this.formModify.value.numero ?? this.data.dataModal.numero,
-      administradorId: 1,
+      administradorId: this.idAdmin,
       tipoHabitacionId: this.formModify.value.tipo_habitacion ?? this.data.dataModal.tipoHabitacionId,
       estadoId: this.data.dataModal.estadoId,
       precio: this.formModify.value.precio ?? this.data.dataModal.precio,

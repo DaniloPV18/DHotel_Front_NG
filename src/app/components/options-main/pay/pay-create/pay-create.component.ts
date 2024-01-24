@@ -12,6 +12,7 @@ import { PaysCreate } from '../../../../interfaces/pays';
 import { PipesDatePipe } from '../../../../pipes/pipes-date.pipe';
 import { ReservesService } from '../../../../services/reserves.service';
 import { ReserveCreate } from '../../../../interfaces/reserve';
+import { IdAdminService } from '../../../../services/components/id-admin.service';
 
 @Component({
   selector: 'app-pay-create',
@@ -52,6 +53,8 @@ export class PayCreateComponent implements OnInit {
 
   abono: number = 0;
 
+  idAdmin !: number | null;
+
   constructor(
     private _dialogRef: MatDialogRef<PayCreateComponent>,
     private _guestComponentService: GuestComponentsService,
@@ -60,11 +63,12 @@ export class PayCreateComponent implements OnInit {
     private _guestsService: GuestsService,
     private _alertService: AlertConfirmationService,
     private _paysService: PaysService,
+    private _idAdminService: IdAdminService,
     private _pipesDate: PipesDatePipe,
     private _cdr: ChangeDetectorRef,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-
+    this.idAdmin = this._idAdminService.getIdAdmin();
   }
 
   ngOnInit() {
@@ -93,7 +97,7 @@ export class PayCreateComponent implements OnInit {
     this._paysService.add(pay).subscribe((response: any) => {
       if (this.data.dataStatus == 2) {
         this._reservesService.add({
-          administradorId: 1,
+          administradorId: this.idAdmin,
           valorPagado: this.abono,
           pagoId: response.id
         } as ReserveCreate).subscribe((r) => {
@@ -128,7 +132,7 @@ export class PayCreateComponent implements OnInit {
         return {
           habitacionId: this.formAdd.value.habitacion,
           huespedId: this.huesped_id,
-          administradorId: 1,
+          administradorId: this.idAdmin,
           tipoPagoId: this.data.dataStatus,
           valorPagado: this.total,
           valorAPagar: this.total,
@@ -140,7 +144,7 @@ export class PayCreateComponent implements OnInit {
         return {
           habitacionId: this.formAdd.value.habitacion,
           huespedId: this.huesped_id,
-          administradorId: 1,
+          administradorId: this.idAdmin,
           tipoPagoId: this.data.dataStatus,
           valorPagado: this.abono,
           valorAPagar: this.total,

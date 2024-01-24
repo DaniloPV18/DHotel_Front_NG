@@ -8,6 +8,7 @@ import { environment } from '../../../../../environments/environment';
 import { RoomsService } from '../../../../services/rooms.service';
 import { PaysUpdate } from '../../../../interfaces/pays';
 import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
+import { IdAdminService } from '../../../../services/components/id-admin.service';
 
 @Component({
   selector: 'app-pay-details',
@@ -52,6 +53,8 @@ export class PayDetailsComponent implements OnInit {
 
   textoModal_1: string = 'Valor pagado:';
 
+  idAdmin !: number | null;
+
   constructor(
     private _paysService: PaysService,
     private _roomsService: RoomsService,
@@ -59,6 +62,7 @@ export class PayDetailsComponent implements OnInit {
     private _dialogRef: MatDialogRef<PayDetailsComponent>,
     private _pipesDate: PipesDatePipe,
     private _alertService: AlertConfirmationService,
+    private _idAdminService: IdAdminService,
     private _dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -72,6 +76,7 @@ export class PayDetailsComponent implements OnInit {
     this.precioHabitacion = this.data.dataModal.habitacion.precio;
     this.fechaAnteriorInicio = this.data.dataModal.fechaInicio;
     this.fechaAnteriorFin = this.data.dataModal.fechaFin;
+    this.idAdmin = this._idAdminService.getIdAdmin();
     this.startFormModify();
   }
 
@@ -143,7 +148,7 @@ export class PayDetailsComponent implements OnInit {
     this._paysService.update({
       id: this.data.dataModal.id,
       habitacionId: this.formModify.value.habitacion,
-      administradorId: 1,
+      administradorId: this.idAdmin,
       huespedId: this.data.dataModal.huesped.id,
       tipoPagoId: this.data.dataModal.tipoPagoId,
       valorPagado: this.precioHabitacion,

@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { GuestsService } from '../../../../services/guests.service';
 import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
 import { Guests } from '../../../../interfaces/guests';
+import { IdAdminService } from '../../../../services/components/id-admin.service';
 
 @Component({
   selector: 'app-guest-update',
@@ -12,12 +13,17 @@ import { Guests } from '../../../../interfaces/guests';
 })
 export class GuestUpdateComponent {
 
+  idAdmin !: number | null;
+
   constructor(
     private _dialogRef: MatDialogRef<GuestUpdateComponent>,
-    private _guestsService : GuestsService,
-    private _alertService : AlertConfirmationService,
+    private _guestsService: GuestsService,
+    private _alertService: AlertConfirmationService,
+    private _idAdminService: IdAdminService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {
+    this.idAdmin = this._idAdminService.getIdAdmin();
+  }
 
   formModify = new FormGroup({
     cedula: new FormControl(this.data.dataModal.cedula, Validators.required),
@@ -26,10 +32,10 @@ export class GuestUpdateComponent {
     celular: new FormControl(this.data.dataModal.celular, Validators.required),
     email: new FormControl(this.data.dataModal.email, Validators.required),
     generoId: new FormControl(this.data.dataModal.generoId),
-    administradorId: new FormControl(1),
+    administradorId: new FormControl(this.idAdmin),
   });
 
-  onSubmit(){
+  onSubmit() {
     this._guestsService.update({
       id: this.data.dataModal.id,
       cedula: this.formModify.value.cedula ?? this.data.dataModal.cedula,
@@ -38,7 +44,7 @@ export class GuestUpdateComponent {
       celular: this.formModify.value.celular ?? this.data.dataModal.celular,
       email: this.formModify.value.email ?? this.data.dataModal.email,
       generoId: this.formModify.value.generoId ?? this.data.dataModal.generoId,
-      administradorId: this.formModify.value.administradorId ?? this.data.dataModal.administradorId,
+      administradorId: this.idAdmin ?? this.data.dataModal.administradorId,
       fechaModificacion: new Date().toISOString()
     } as Guests).subscribe((response) => {
       this._alertService.showSuccessAlert('Huesped actualizado con éxito', 1)
@@ -49,13 +55,13 @@ export class GuestUpdateComponent {
       (error) => {
         console.log(error);
         this._alertService.showSuccessAlert('Ha Ocurrido un error.!', 2)
-        .then((result) => {          
-        });
+          .then((result) => {
+          });
       }
     );;
   }
-  
-  cancel(){
+
+  cancel() {
     this._dialogRef.close();
   }
 

@@ -6,6 +6,7 @@ import { RoomsService } from '../../../../services/rooms.service';
 import { ServiceService } from '../../../../services/service.service';
 import { Rooms, RoomsCreate } from '../../../../interfaces/rooms';
 import { AlertConfirmationService } from '../../../../services/alert-confirmation.service';
+import { IdAdminService } from '../../../../services/components/id-admin.service';
 
 @Component({
   selector: 'app-room-create',
@@ -22,6 +23,8 @@ export class RoomCreateComponent implements OnInit {
 
   opciones: any[] = [];
 
+  idAdmin !: number | null;
+
   formAdd = new FormGroup({
     numero: new FormControl('', Validators.required),
     precio: new FormControl('', Validators.required),
@@ -35,8 +38,11 @@ export class RoomCreateComponent implements OnInit {
     private _roomsServices: RoomsService,
     private _servicesServices: ServiceService,
     private _alertService : AlertConfirmationService,
+    private _idAdminService: IdAdminService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) { 
+    this.idAdmin = this._idAdminService.getIdAdmin();
+  }
 
   ngOnInit() {
     this.cargarOpcionesServicios();
@@ -80,7 +86,7 @@ export class RoomCreateComponent implements OnInit {
   onSubmit() {
     this._roomsServices.add({
       numero: this.formAdd.value.numero,
-      administradorId: 1,
+      administradorId: this.idAdmin,
       tipoHabitacionId: this.formAdd.value.tipo_habitacion,
       precio: this.formAdd.value.precio,
       foto: this.formAdd.value.foto,

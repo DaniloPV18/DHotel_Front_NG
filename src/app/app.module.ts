@@ -59,6 +59,11 @@ import { RoomViewComponent } from './components/options-main/pay/pay-list/room-v
 import { PipesDatePipe } from './pipes/pipes-date.pipe';
 import { ReserveCreateComponent } from './components/options-main/pay/reserve-create/reserve-create.component';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './components/login/auth/auth-interceptor';
+
+import { IdAdminService } from './services/components/id-admin.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -119,7 +124,13 @@ import { ReserveCreateComponent } from './components/options-main/pay/reserve-cr
     MatTabsModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor, // Usa tu interceptor personalizado aquí
+      multi: true
+    },
+    IdAdminService
   ],
   bootstrap: [AppComponent]
 })
