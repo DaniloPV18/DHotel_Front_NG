@@ -92,7 +92,7 @@ export class RoomCreateComponent implements OnInit {
       foto: this.formAdd.value.foto,
       habitacionServicioOfrecido: this.formAdd.value.opcionesSeleccionadas
     } as RoomsCreate).subscribe((response) => {
-      this._alertService.showSuccessAlert('Administrador agregado con éxito', 1)
+      this._alertService.showSuccessAlert('Habitacion agregado con éxito', 1)
         .then((result) => {
           if (result.isConfirmed) { this._dialogRef.close('updated'); }
         });
